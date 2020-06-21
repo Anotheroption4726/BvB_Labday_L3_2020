@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class Server_User
 {
@@ -9,14 +6,17 @@ public class Server_User
 	private String email;
 	private String password;
 	private AccountTypeEnum accountType;
-	private String token;
-	private int wins;
-	private int losses;
+	private String token = "placeholder token";
+	private int wins = 0;
+	private int losses = 0;
 
 	//	Constructor
-	public Server_User()
+	public Server_User(int arg_id, string arg_email, string arg_password, AccountTypeEnum arg_accountType)
 	{
-
+		id = arg_id;
+		email = arg_email;
+		password = arg_password;
+		accountType = arg_accountType;
 	}
 
 	//	Getters
