@@ -47,5 +47,40 @@ public abstract class Server_Robot
 		return behaviorAggressivity;
 	}
 
+
 	// Setters
+	public void SetWeaponId(int arg_weaponId)
+	{
+		weaponId = arg_weaponId;
+	}
+
+	public void SetStatAttack(int arg_statAttack)
+	{
+		statAttack = arg_statAttack;
+	}
+
+	public void SetStatHp(int arg_statHp)
+	{
+		statHp = arg_statHp;
+	}
+
+	public void SetStatSpeed(int arg_statSpeed)
+	{
+		statSpeed = arg_statSpeed;
+	}
+
+	public void SetBehaviorProximity(int arg_behaviorProximity)
+	{
+		behaviorProximity = arg_behaviorProximity;
+	}
+
+	public void SetBehaviorAgility(int arg_behaviorAgility)
+	{
+		behaviorAgility = arg_behaviorAgility;
+	}
+
+	public void SetBehaviorAggressivity(int arg_behaviorAggressivity)
+	{
+		behaviorAggressivity = arg_behaviorAggressivity;
+	}
 }
