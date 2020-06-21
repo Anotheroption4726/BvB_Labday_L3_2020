@@ -10,6 +10,7 @@ public class Server_User
 	private int wins = 0;
 	private int losses = 0;
 
+
 	//	Constructor
 	public Server_User(int arg_id, string arg_email, string arg_password, AccountTypeEnum arg_accountType)
 	{
@@ -18,6 +19,7 @@ public class Server_User
 		password = arg_password;
 		accountType = arg_accountType;
 	}
+
 
 	//	Getters
 	public int GetId()
@@ -54,6 +56,7 @@ public class Server_User
 	{
 		return losses;
 	}
+
 
 	//	Setters
 	public void SetToken(String arg_token)
