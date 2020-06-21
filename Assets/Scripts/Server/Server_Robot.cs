@@ -1,0 +1,51 @@
+﻿using System;
+
+public abstract class Server_Robot
+{
+	private int weaponId = 1;
+	private int statAttack = 50;				// (0 => 100)
+	private int statHp = 50;					// (0 => 100)
+	private int statSpeed = 50;					// (0 => 100)
+	private int behaviorProximity = 50;			// (0 => 100)
+	private int behaviorAgility = 50;			// (0 => 100)
+	private int behaviorAggressivity = 50;      // (0 => 100)
+
+
+	// Getters
+	public int GetWeaponId()
+	{
+		return weaponId;
+	}
+
+	public int GetStatAttack()
+	{
+		return statAttack;
+	}
+
+	public int GetStatHp()
+	{
+		return statHp;
+	}
+
+	public int GetStatSpeed()
+	{
+		return statSpeed;
+	}
+
+	public int GetBehaviorProximity()
+	{
+		return behaviorProximity;
+	}
+
+	public int GetbehaviorAgility()
+	{
+		return behaviorAgility;
+	}
+
+	public int GetBehaviorAggressivity()
+	{
+		return behaviorAggressivity;
+	}
+
+	// Setters
+}
