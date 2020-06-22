@@ -7,6 +7,6 @@ public class LoginToSignupScript : MonoBehaviour
 {
     public void NavigationSignup()
     {
-        SceneManager.LoadScene("NouveauCompte", LoadSceneMode.Single);
+        SceneManager.LoadScene("MenuNewUserScene", LoadSceneMode.Single);
     }
 }
