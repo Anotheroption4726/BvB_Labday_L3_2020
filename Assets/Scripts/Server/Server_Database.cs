@@ -58,4 +58,22 @@ public static class Server_Database
 	{
 		return weaponsTable;
 	}
+
+    public static int GetUserIdFromEmail(string arg_email)
+    {
+        return 1;
+    }
+
+    public static bool CheckUserPassword(int arg_userId, string arg_password)
+    {
+        return true;
+    }
+
+    public static AccountTypeEnum GetUserAccountTypeFromEmail(string arg_email)
+    {
+        AccountTypeEnum loc_accountType = AccountTypeEnum.Player;
+        return loc_accountType;
+    }
+
+    //public static Server_User GetServer_UserFrom
 }
