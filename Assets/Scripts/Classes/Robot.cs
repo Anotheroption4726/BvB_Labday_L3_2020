@@ -3,16 +3,13 @@
 public abstract class Robot
 {
 	private Weapon weapon;
-	private int statAttack;             // (0 => 100)
-	private int statHp;                 // (0 => 100)
-	private int statSpeed;              // (0 => 100)
-	private int behaviorProximity;     // (0 => 100)
-	private int behaviorAgility;       // (0 => 100)
-	private int behaviorAggressivity;  // (0 => 100)
+	private int statAttack;				// (0 => 100)
+	private int statHp;					// (0 => 100)
+	private int statSpeed;				// (0 => 100)
+	private int behaviorProximity;		// (0 => 100)
+	private int behaviorAgility;		// (0 => 100)
+	private int behaviorAggressivity;	// (0 => 100)
 	private int curentStatHp;
-
-
-	//	Constructor
 
 
 	//	Getters
@@ -56,6 +53,7 @@ public abstract class Robot
 		return curentStatHp;
 	}
 
+
 	//	Setters
 	public void SetWeaponId(Weapon arg_Weapon)
 	{
@@ -96,5 +94,7 @@ public abstract class Robot
 	{
 		curentStatHp = arg_BehaviorCurentStatHp;
 	}
+
+
 	// Setters: ne pas oublier de traiter les exceptions > 100 et < 0 (SURTOUT POUR CURENTSTATHP)
 }
