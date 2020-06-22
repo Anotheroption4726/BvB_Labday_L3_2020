@@ -2,7 +2,7 @@
 
 public class Server_Robot_Player : Server_Robot
 {
-    int userId;
+    private int userId;
     
     public Server_Robot_Player(int arg_userId, int arg_weaponId, int arg_statAttack, int arg_statHp, int arg_statSpeed, int arg_behaviorProximity, int arg_behaviorAgility, int arg_behaviorAggressivity)
     {
@@ -17,7 +17,7 @@ public class Server_Robot_Player : Server_Robot
     }
 
     //  Getters
-    int GetUserId()
+    public int GetUserId()
     {
         return userId;
     }
