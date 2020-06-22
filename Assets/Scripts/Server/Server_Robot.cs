@@ -2,13 +2,13 @@
 
 public abstract class Server_Robot
 {
-	private int weaponId = 1;
-	private int statAttack = 50;				// (0 => 100)
-	private int statHp = 50;					// (0 => 100)
-	private int statSpeed = 50;					// (0 => 100)
-	private int behaviorProximity = 50;			// (0 => 100)
-	private int behaviorAgility = 50;			// (0 => 100)
-	private int behaviorAggressivity = 50;      // (0 => 100)
+	private int weaponId;
+	private int statAttack;				// (0 => 100)
+	private int statHp;					// (0 => 100)
+	private int statSpeed;				// (0 => 100)
+	private int behaviorProximity;		// (0 => 100)
+	private int behaviorAgility;		// (0 => 100)
+	private int behaviorAggressivity;   // (0 => 100)
 
 
 	// Getters
