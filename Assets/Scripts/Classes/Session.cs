@@ -4,6 +4,7 @@ public static class Session
 {
 	private static User curentUser;
 	private static SessionTypeEnum curentSessionType = SessionTypeEnum.GameTest;
+	// ^ DELETE: type de session déterminé par UserType. Si User == null, alors session test par défaut
 	private static GameStateEnum gameState;
 	private static bool muteAudio = false;
 	private static float timeScale = 1f;
