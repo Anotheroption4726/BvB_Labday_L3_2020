@@ -133,9 +133,8 @@ GameObject:
   - component: {fileID: 262096586}
   - component: {fileID: 262096585}
   - component: {fileID: 262096584}
-  - component: {fileID: 262096589}
   - component: {fileID: 262096588}
-  - component: {fileID: 262096590}
+  - component: {fileID: 262096589}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -239,7 +238,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 262096583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da9d60ff204174f2a9a807febf3ae660, type: 3}
+  m_Script: {fileID: 11500000, guid: 9397e15e82a9744e5b3069610cf5c6d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &262096589
@@ -251,24 +250,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 262096583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e680e9a5713524529bc9cc41f6c6aeb3, type: 3}
+  m_Script: {fileID: 11500000, guid: fb82195bfe8f8463795b060677cf5cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &262096590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 262096583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36ca41a05c07d433c87d044990831e61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  emailField: {fileID: 2060823677}
-  passwordField: {fileID: 1395691756}
-  btnLogin: {fileID: 1131236989}
 --- !u!1 &470446895
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +605,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 262096589}
-        m_MethodName: navigaterino
+        m_MethodName: NavigationSignup
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -749,8 +733,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 262096590}
-        m_MethodName: Search
+      - m_Target: {fileID: 262096588}
+        m_MethodName: NavigationMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1294,8 +1278,8 @@ Camera:
   m_GameObject: {fileID: 1475259351}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
