@@ -55,7 +55,7 @@ public abstract class Robot
 
 
 	//	Setters
-	public void SetWeaponId(Weapon arg_Weapon)
+	public void SetWeapon(Weapon arg_Weapon)
 	{
 		weapon = arg_Weapon;
 	}
