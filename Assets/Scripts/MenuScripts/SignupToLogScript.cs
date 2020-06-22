@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SignupToLogScript : MonoBehaviour
 {
-    public void navigaterino()
+    public void NavigationLogin()
     {
         SceneManager.LoadScene("MenuLoginScene", LoadSceneMode.Single);
     }

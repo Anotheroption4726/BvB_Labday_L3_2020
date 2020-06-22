@@ -15,13 +15,13 @@ public class InputControlScript : MonoBehaviour
     string login = "test"; //login pour se connecter
     string password = "password"; //password pour se connecter
 
-    Server_User[] serverUserTable;
+    //Server_User[] serverUserTable;
 
     void Awake()
     {
         btnLogin.onClick.AddListener(Search); //écoute d'évennement onClick sur le bouton pour appeler la fonction Search()
 
-        serverUserTable = Server_Database.GetUsersTable();
+        //serverUserTable = Server_Database.GetUsersTable();
     }
 
     public void Search()
