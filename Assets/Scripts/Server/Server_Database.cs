@@ -78,8 +78,16 @@ public static class Server_Database
 
 	public static AccountTypeEnum GetServer_UserAccountTypeFromUserId(int arg_userId)
 	{
-		AccountTypeEnum loc_accountType = AccountTypeEnum.Player;
-		return loc_accountType;
+        foreach (Server_User lp_user in usersTable)
+        {
+            if (lp_user.GetId() == arg_userId)
+            {
+                Debug.Log(lp_user.GetAccountType());
+                return lp_user.GetAccountType();
+            }
+        }
+
+        return AccountTypeEnum.Player ;
 	}
 
 	public static String GetServer_UserTokenFromUserId(int arg_userId)
@@ -89,8 +97,18 @@ public static class Server_Database
 
 	public static bool CheckServer_UserPasswordFromUserId(int arg_userId, string arg_password)
 	{
-		return true;
-	}
+        foreach (Server_User lp_user in usersTable)
+        {
+            if (lp_user.GetId() == arg_userId && lp_user.GetPassword() == arg_password)
+            {
+                Debug.Log("authentification réussie");
+                return true;
+            }
+                
+        }
+
+        return false;
+    }
 
 	public static int GetServer_UserWinsFromUserId(int arg_userId)
 	{

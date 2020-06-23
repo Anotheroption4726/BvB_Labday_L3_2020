@@ -12,8 +12,8 @@ public class InputControlScript : MonoBehaviour
     [SerializeField] InputField emailField, passwordField; //on assigne les variables aux InputFields
     [SerializeField] Button btnLogin; //on assignela variable au bouton login
     string emailInput, passwordInput;
-    string login = "test"; //login pour se connecter
-    string password = "password"; //password pour se connecter
+    //string login = "test"; //login pour se connecter
+    //string password = "password"; //password pour se connecter
     int id_user;
     //Server_User[] serverUserTable;
 
@@ -38,7 +38,7 @@ public class InputControlScript : MonoBehaviour
         {
             NavigationMenu();
         }*/
-        if(id_user != 0)
+        if(CheckServer_UserPasswordFromUserId(id_user, passwordInput) == true )
         {
             Debug.LogWarning("utilisateur authentifié");
         }
