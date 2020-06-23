@@ -175,6 +175,7 @@ public static class Server_Database
 	}
 
 
+	//	Méthodes de conversion d'objets serveur en objets locaux
 	public static Robot_Player CreateRobot_PlayerFromServer(Server_Robot_Player arg_serverRobot)
 	{
 		return new Robot_Player(arg_serverRobot.GetWeaponId(), arg_serverRobot.GetStatAttack(), arg_serverRobot.GetStatHp(), arg_serverRobot.GetStatSpeed(), arg_serverRobot.GetBehaviorProximity(), arg_serverRobot.GetbehaviorAgility(), arg_serverRobot.GetBehaviorAggressivity());
@@ -183,5 +184,17 @@ public static class Server_Database
 	public static Robot_AlgoGen CreateRobot_AlgoGenFromServer(Server_Robot_AlgoGen arg_serverRobot)
 	{
 		return new Robot_AlgoGen(arg_serverRobot.GetAlgoGenId(), arg_serverRobot.GetWins(), arg_serverRobot.GetLosses(), arg_serverRobot.GetWeaponId(), arg_serverRobot.GetStatAttack(), arg_serverRobot.GetStatHp(), arg_serverRobot.GetStatSpeed(), arg_serverRobot.GetBehaviorProximity(), arg_serverRobot.GetbehaviorAgility(), arg_serverRobot.GetBehaviorAggressivity());
+	}
+
+	public static User_Player CreateUser_PlayerFromServer(Server_User arg_serverUser)
+	{
+		int loc_randomRobot_AlgoGenId = 1;
+		return new User_Player(arg_serverUser.GetId(), arg_serverUser.GetAccountType(), arg_serverUser.GetToken(), CreateRobot_PlayerFromServer(GetServer_Robot_PlayerFromUserId(arg_serverUser.GetId())), CreateRobot_AlgoGenFromServer(GetServer_Robot_AlgoGenFromId(loc_randomRobot_AlgoGenId)));
+	}
+
+	public static User_Developper CreateUser_DevelopperFromServer(Server_User arg_serverUser)
+	{
+		Robot_AlgoGen[] loc_algoGenSessionTable = { };
+		return new User_Developper(arg_serverUser.GetId(), arg_serverUser.GetAccountType(), arg_serverUser.GetToken(), loc_algoGenSessionTable);
 	}
 }

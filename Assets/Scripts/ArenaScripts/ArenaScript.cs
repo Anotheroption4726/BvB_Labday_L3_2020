@@ -41,8 +41,9 @@ public class ArenaScript : MonoBehaviour
         }
     }
 
+
     /*
-    public static GameObject GetBulletFromId(int arg_bulletId)
+    private GameObject GetBulletFromId(int arg_bulletId)
     {
         foreach (GameObject lp_bullet in bulletTable)
         {
@@ -55,7 +56,8 @@ public class ArenaScript : MonoBehaviour
     }
     */
 
-    public static Weapon GetWeaponFromId(int arg_weaponId)
+
+    private Weapon GetWeaponFromId(int arg_weaponId)
     {
         foreach (Weapon lp_weapon in weaponTable)
         {
