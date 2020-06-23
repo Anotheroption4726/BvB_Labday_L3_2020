@@ -205,17 +205,17 @@ public static class Server_Database
 		Bullet loc_bullet = Session.GetBulletFromBulletId(arg_serverWeapon.GetBulletId());
 		return new Weapon(loc_bullet, arg_serverWeapon.GetBulletSpeed(), arg_serverWeapon.GetMaxRange(), arg_serverWeapon.GetMinRange(), arg_serverWeapon.GetRateOfFire(), arg_serverWeapon.GetDamageValue());
 	}
+	*/
 
 	public static Robot_Player CreateRobot_PlayerFromServer(Server_Robot_Player arg_serverRobot)
 	{
-		Weapon loc_weapon = CreateWeaponFromServer(GetServer_WeaponFromWeaponId(arg_serverRobot.GetWeaponId()));
-		return new Robot_Player(loc_weapon, arg_serverRobot.GetStatAttack(), arg_serverRobot.GetStatHp(), arg_serverRobot.GetStatSpeed(), arg_serverRobot.GetBehaviorProximity(), arg_serverRobot.GetbehaviorAgility(), arg_serverRobot.GetBehaviorAggressivity());
+		//Weapon loc_weapon = CreateWeaponFromServer(GetServer_WeaponFromWeaponId(arg_serverRobot.GetWeaponId()));
+		return new Robot_Player(arg_serverRobot.GetWeaponId(), arg_serverRobot.GetStatAttack(), arg_serverRobot.GetStatHp(), arg_serverRobot.GetStatSpeed(), arg_serverRobot.GetBehaviorProximity(), arg_serverRobot.GetbehaviorAgility(), arg_serverRobot.GetBehaviorAggressivity());
 	}
 
 	public static Robot_AlgoGen CreateRobot_AlgoGenFromServer(Server_Robot_AlgoGen arg_serverRobot)
 	{
-		Weapon loc_weapon = CreateWeaponFromServer(GetServer_WeaponFromWeaponId(arg_serverRobot.GetWeaponId()));
-		return new Robot_AlgoGen(arg_serverRobot.GetAlgoGenId(), arg_serverRobot.GetWins(), arg_serverRobot.GetLosses(), loc_weapon, arg_serverRobot.GetStatAttack(), arg_serverRobot.GetStatHp(), arg_serverRobot.GetStatSpeed(), arg_serverRobot.GetBehaviorProximity(), arg_serverRobot.GetbehaviorAgility(), arg_serverRobot.GetBehaviorAggressivity());
+		//Weapon loc_weapon = CreateWeaponFromServer(GetServer_WeaponFromWeaponId(arg_serverRobot.GetWeaponId()));
+		return new Robot_AlgoGen(arg_serverRobot.GetAlgoGenId(), arg_serverRobot.GetWins(), arg_serverRobot.GetLosses(), arg_serverRobot.GetWeaponId(), arg_serverRobot.GetStatAttack(), arg_serverRobot.GetStatHp(), arg_serverRobot.GetStatSpeed(), arg_serverRobot.GetBehaviorProximity(), arg_serverRobot.GetbehaviorAgility(), arg_serverRobot.GetBehaviorAggressivity());
 	}
-	*/
 }
