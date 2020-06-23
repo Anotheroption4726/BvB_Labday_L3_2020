@@ -31,23 +31,6 @@ public static class Server_Database
 	private static Server_Robot_AlgoGen[] algoGenRobotsTable = { new Server_Robot_AlgoGen(1, 2, 10, 70, 20, 0, 20, 10) };
 
 
-	//	Getters
-	public static Server_User[] GetUsersTable()
-	{
-		return usersTable;
-	}
-
-	public static Server_Robot_Player[] GetPlayerRobotsTable()
-	{
-		return playerRobotsTable;
-	}
-
-	public static Server_Robot_AlgoGen[] GetAlgoGenRobotsTable()
-	{
-		return algoGenRobotsTable;
-	}
-
-
 	//	Methodes table User
 	public static int GetServer_UserIdFromEmail(string arg_email)
 	{
@@ -59,19 +42,6 @@ public static class Server_Database
             }
         }
         return 0;
-	}
-
-	public static AccountTypeEnum GetServer_UserAccountTypeFromUserId(int arg_userId)
-	{
-        foreach (Server_User lp_user in usersTable)
-        {
-            if (lp_user.GetId() == arg_userId)
-            {
-                return lp_user.GetAccountType();
-            }
-        }
-
-        return AccountTypeEnum.Player ;
 	}
 
 	public static bool CheckServer_UserPasswordFromUserId(int arg_userId, string arg_password)
@@ -87,6 +57,32 @@ public static class Server_Database
 
         return false;
     }
+
+	public static AccountTypeEnum GetServer_UserAccountTypeFromUserId(int arg_userId)
+	{
+		foreach (Server_User lp_user in usersTable)
+		{
+			if (lp_user.GetId() == arg_userId)
+			{
+				return lp_user.GetAccountType();
+			}
+		}
+
+		return AccountTypeEnum.Player;
+	}
+
+	public static Server_User GetServer_UserFromId(int arg_userId)
+	{
+		foreach (Server_User lp_serverUser in usersTable)
+		{
+			if (lp_serverUser.GetId() == arg_userId)
+			{
+				return lp_serverUser;
+			}
+		}
+
+		return null;
+	}
 
 	public static int GetServer_UserWinsFromUserId(int arg_userId)
 	{
@@ -122,8 +118,8 @@ public static class Server_Database
         {
             if (lp_user.GetId() == arg_userId)
             {
-                int losses = lp_user.GetLosses();
-                lp_user.SetLosses(losses+1);
+                int loc_losses = lp_user.GetLosses();
+                lp_user.SetLosses(loc_losses+1);
             }
 
         }
@@ -135,8 +131,8 @@ public static class Server_Database
         {
             if (lp_user.GetId() == arg_userId)
             {
-                int wins = lp_user.GetWins();
-                lp_user.SetWins(wins + 1);
+                int loc_wins = lp_user.GetWins();
+                lp_user.SetWins(loc_wins + 1);
             }
 
         }
@@ -152,7 +148,6 @@ public static class Server_Database
 			{
 				return lp_robotPlayer;
 			}
-
 		}
 		return null;
 	}
