@@ -133,7 +133,7 @@ public class RobotScript : MonoBehaviour
         {
             if (robotRigidbody.velocity.magnitude > 10)
             {
-                //  NormalizeRigidBodyVelocity();
+                NormalizeRigidBodyVelocity(robotRigidbody);
             }
 
             RobotAim(transform, enemyRobotGameObject.transform.position);
@@ -155,6 +155,33 @@ public class RobotScript : MonoBehaviour
                     //RobotEventShoot();
                 }
             }
+        }
+    }
+
+
+    //  Normalisation de la Vitesse du RigidBody
+    private void NormalizeRigidBodyVelocity(Rigidbody arg_robotRigidbody)
+    {
+        float magnitudeDecrease = 1.5f;
+
+        if (arg_robotRigidbody.velocity.x > 0)
+        {
+            arg_robotRigidbody.velocity = new Vector3(arg_robotRigidbody.velocity.x - magnitudeDecrease, 0, arg_robotRigidbody.velocity.z);
+        }
+
+        if (arg_robotRigidbody.velocity.x < 0)
+        {
+            arg_robotRigidbody.velocity = new Vector3(arg_robotRigidbody.velocity.x + magnitudeDecrease, 0, arg_robotRigidbody.velocity.z);
+        }
+
+        if (arg_robotRigidbody.velocity.z > 0)
+        {
+            arg_robotRigidbody.velocity = new Vector3(arg_robotRigidbody.velocity.x, 0, arg_robotRigidbody.velocity.z - magnitudeDecrease);
+        }
+
+        if (arg_robotRigidbody.velocity.z < 0)
+        {
+            arg_robotRigidbody.velocity = new Vector3(arg_robotRigidbody.velocity.x, 0, arg_robotRigidbody.velocity.z + magnitudeDecrease);
         }
     }
 
