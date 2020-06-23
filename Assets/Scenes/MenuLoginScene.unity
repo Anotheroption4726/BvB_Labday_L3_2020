@@ -749,8 +749,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 262096588}
-        m_MethodName: NavigationMenu
+      - m_Target: {fileID: 262096590}
+        m_MethodName: Search
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
