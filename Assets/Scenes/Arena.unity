@@ -15869,9 +15869,9 @@ MonoBehaviour:
   enemyRobotGameObject: {fileID: 0}
   testStatAttack: 0
   testStatHp: 0
-  testStatSpeed: 50
+  testStatSpeed: 25
   testBehaviorProximity: 0
-  testBehaviorAgility: 0
+  testBehaviorAgility: 50
   testBehaviorAggressivity: 0
   testWeaponBulletId: 0
   testWeaponBulletSpeed: 0
@@ -21633,9 +21633,9 @@ MonoBehaviour:
   enemyRobotGameObject: {fileID: 0}
   testStatAttack: 0
   testStatHp: 0
-  testStatSpeed: 50
+  testStatSpeed: 75
   testBehaviorProximity: 0
-  testBehaviorAgility: 0
+  testBehaviorAgility: 50
   testBehaviorAggressivity: 0
   testWeaponBulletId: 0
   testWeaponBulletSpeed: 0
