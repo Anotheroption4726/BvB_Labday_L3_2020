@@ -37,7 +37,7 @@ public static class Server_Database
 	//	minRange
 	//	rateOfFire
 	//	damageValue
-	private static Server_Weapon[] weaponsTable = { new Server_Weapon(1, 1, 4, 8, 4, 4, 2), new Server_Weapon(2, 1, 2, 14, 8, 1, 4) };
+	//	private static Server_Weapon[] weaponsTable = { new Server_Weapon(1, 1, 4, 8, 4, 4, 2), new Server_Weapon(2, 1, 2, 14, 8, 1, 4) };
 
 
 	//	Getters
@@ -56,10 +56,12 @@ public static class Server_Database
 		return algoGenRobotsTable;
 	}
 
+	/*
 	public static Server_Weapon[] GetWeaponsTable()
 	{
 		return weaponsTable;
 	}
+	*/
 
 
 	//	Methodes table User
@@ -188,15 +190,16 @@ public static class Server_Database
 		return algoGenRobotsTable[0];
 	}
 
-
+	/*
 	//	Methodes table weaponsTable
 	public static Server_Weapon GetServer_WeaponFromWeaponId(int arg_weaponId)
 	{
 		return weaponsTable[0];
 	}
-
+	*/
 
 	// Methodes de conversion robot serveur en robot local
+	/*
 	public static Weapon CreateWeaponFromServer(Server_Weapon arg_serverWeapon)
 	{
 		Bullet loc_bullet = Session.GetBulletFromBulletId(arg_serverWeapon.GetBulletId());
@@ -214,4 +217,5 @@ public static class Server_Database
 		Weapon loc_weapon = CreateWeaponFromServer(GetServer_WeaponFromWeaponId(arg_serverRobot.GetWeaponId()));
 		return new Robot_AlgoGen(arg_serverRobot.GetAlgoGenId(), arg_serverRobot.GetWins(), arg_serverRobot.GetLosses(), loc_weapon, arg_serverRobot.GetStatAttack(), arg_serverRobot.GetStatHp(), arg_serverRobot.GetStatSpeed(), arg_serverRobot.GetBehaviorProximity(), arg_serverRobot.GetbehaviorAgility(), arg_serverRobot.GetBehaviorAggressivity());
 	}
+	*/
 }
