@@ -8,12 +8,12 @@ public class Robot_AlgoGen : Robot
 	
 	
 	//	Constructor
-	public Robot_AlgoGen(int arg_algoGenId, int arg_wins, int arg_losses, Weapon arg_weapon, int arg_statAttack, int arg_statHp, int arg_statSpeed, int arg_behaviorProximity, int arg_behaviorAgility, int arg_behaviorAggressivity)
+	public Robot_AlgoGen(int arg_algoGenId, int arg_wins, int arg_losses, int arg_weaponId, int arg_statAttack, int arg_statHp, int arg_statSpeed, int arg_behaviorProximity, int arg_behaviorAgility, int arg_behaviorAggressivity)
 	{
 		algoGenId = arg_algoGenId;
 		wins = arg_wins;
 		losses = arg_losses;
-		SetWeapon(arg_weapon);
+		SetWeaponId(arg_weaponId);
 		SetStatAttack(arg_statAttack);
 		SetStatHp(arg_statHp);
 		SetStatSpeed(arg_statSpeed);

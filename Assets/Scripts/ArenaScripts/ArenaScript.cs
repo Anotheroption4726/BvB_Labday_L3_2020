@@ -6,6 +6,8 @@ public class ArenaScript : MonoBehaviour
     [SerializeField] private GameObject enemyRobotGameObject;
     private RobotScript playerRobotScript;
     private RobotScript enemyRobotScript;
+    private static Bullet[] bulletTable = { new Bullet(1) };
+    private static Weapon[] weaponTable = { new Weapon(1, 1, 4, 8, 4, 4, 2), new Weapon(2, 1, 2, 14, 8, 1, 4) };
 
     private void Awake()
     {
@@ -40,25 +42,55 @@ public class ArenaScript : MonoBehaviour
     }
 
 
+    public static Bullet GetBulletFromId(int arg_bulletId)
+    {
+        foreach (Bullet lp_bullet in bulletTable)
+        {
+            if (lp_bullet.GetId() == arg_bulletId)
+            {
+                return lp_bullet;
+            }
+        }
+        return null;
+    }
+
+    public static Weapon GetWeaponFromId(int arg_weaponId)
+    {
+        foreach (Weapon lp_weapon in weaponTable)
+        {
+            if (lp_weapon.GetId() == arg_weaponId)
+            {
+                return lp_weapon;
+            }
+        }
+        return null;
+    }
+
+
     //  Methode d'assignement de robot test
     private void SetTestRobot(RobotScript arg_robotScript)
     {
         arg_robotScript.SetRobot(
             new Robot_Player(
-                new Weapon(
-                    new Bullet(arg_robotScript.GetTestWeaponBulletId()),
-                    arg_robotScript.GetTestWeaponBulletSpeed(),
-                    arg_robotScript.GetTestWeaponMaxRange(),
-                    arg_robotScript.GetTestWeaponMinRange(),
-                    arg_robotScript.GetTestWeaponRateOfFire(),
-                    arg_robotScript.GetTestWeaponDamageValue()
-                ),
+                0,
                 arg_robotScript.GetTestStatAttack(),
                 arg_robotScript.GetTestStatHp(),
                 arg_robotScript.GetTestStatSpeed(),
                 arg_robotScript.GetTestBehaviorProximity(),
                 arg_robotScript.GetTestBehaviorAgility(),
                 arg_robotScript.GetTestBehaviorAggressivity()
+            )
+        );
+
+        arg_robotScript.SetWeapon(
+            new Weapon(
+                0,
+                arg_robotScript.GetTestWeaponBulletId(),
+                arg_robotScript.GetTestWeaponBulletSpeed(),
+                arg_robotScript.GetTestWeaponMaxRange(),
+                arg_robotScript.GetTestWeaponMinRange(),
+                arg_robotScript.GetTestWeaponRateOfFire(),
+                arg_robotScript.GetTestWeaponDamageValue()
             )
         );
     }

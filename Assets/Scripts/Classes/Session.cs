@@ -3,7 +3,6 @@
 public static class Session
 {
 	private static User curentUser;
-	private static Bullet[] bulletTable = { new Bullet(1) };
 	private static GameStateEnum gameState = GameStateEnum.GamePending;
 	private static bool muteAudio = false;
 	private static float timeScale = 1f;
@@ -13,11 +12,6 @@ public static class Session
 	public static User GetCurentUser()
 	{
 		return curentUser;
-	}
-
-	public static Bullet GetBulletFromBulletId(int arg_bulletId)
-	{
-		return bulletTable[0];
 	}
 
 	public static GameStateEnum GetGameState()

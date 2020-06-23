@@ -2,7 +2,7 @@
 
 public abstract class Robot
 {
-	private Weapon weapon;
+	private int weaponId;
 	private int statAttack;				// (0 => 100)
 	private int statHp;					// (0 => 100)
 	private int statSpeed;				// (0 => 100)
@@ -13,9 +13,9 @@ public abstract class Robot
 
 
 	//	Getters
-	public Weapon GetWeapon()
+	public int GetWeaponId()
 	{
-		return weapon;
+		return weaponId;
 	}
 
 	public int GetStatAttack()
@@ -55,9 +55,9 @@ public abstract class Robot
 
 
 	//	Setters
-	public void SetWeapon(Weapon arg_Weapon)
+	public void SetWeaponId(int arg_weaponId)
 	{
-		weapon = arg_Weapon;
+		weaponId = arg_weaponId;
 	}
 
 	public void SetStatAttack(int arg_StatAttack)

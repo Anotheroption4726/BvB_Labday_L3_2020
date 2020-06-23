@@ -2,7 +2,8 @@
 
 public class Weapon
 {
-	private Bullet bullet;
+	private int id;
+	private int bulletId;
 	private int bulletSpeed;
 	private int maxRange;
 	private int minRange;
@@ -11,9 +12,10 @@ public class Weapon
 	
 
 	//	Constructor
-	public Weapon(Bullet arg_bullet, int arg_bulletSpeed, int arg_maxRange, int arg_minRange, int arg_rateOfFire, int arg_damageValue)
+	public Weapon(int arg_id, int arg_bulletId, int arg_bulletSpeed, int arg_maxRange, int arg_minRange, int arg_rateOfFire, int arg_damageValue)
 	{
-		bullet = arg_bullet;
+		id = arg_id;
+		bulletId = arg_bulletId;
 		bulletSpeed = arg_bulletSpeed;
 		maxRange = arg_maxRange;
 		minRange = arg_minRange;
@@ -23,9 +25,14 @@ public class Weapon
 
 
 	// Getters
-	public Bullet GetBulletId()
+	public int GetId()
 	{
-		return bullet;
+		return id;
+	}
+
+	public int GetBulletId()
+	{
+		return bulletId;
 	}
 
 	public int GetBulletSpeed()
