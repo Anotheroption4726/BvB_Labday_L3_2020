@@ -24,12 +24,12 @@ public class RobotScript : MonoBehaviour
     [SerializeField] private int testBehaviorAgility;
     [SerializeField] private int testBehaviorAggressivity;
 
-    [SerializeField] private int testBulletId;
-    [SerializeField] private int testBulletSpeed;
-    [SerializeField] private int testMaxRange;
-    [SerializeField] private int testMinRange;
-    [SerializeField] private int testRateOfFire;
-    [SerializeField] private int testDamageValue;
+    [SerializeField] private int testWeaponBulletId;
+    [SerializeField] private int testWeaponBulletSpeed;
+    [SerializeField] private int testWeaponMaxRange;
+    [SerializeField] private int testWeaponMinRange;
+    [SerializeField] private int testWeaponRateOfFire;
+    [SerializeField] private int testWeaponDamageValue;
 
 
     //  Getters
@@ -73,34 +73,34 @@ public class RobotScript : MonoBehaviour
         return testBehaviorAggressivity;
     }
 
-    public int GetTestBulletId()
+    public int GetTestWeaponBulletId()
     {
-        return testBulletId;
+        return testWeaponBulletId;
     }
 
-    public int GetTestBulletSpeed()
+    public int GetTestWeaponBulletSpeed()
     {
-        return testBulletSpeed;
+        return testWeaponBulletSpeed;
     }
 
-    public int GetTestMaxRange()
+    public int GetTestWeaponMaxRange()
     {
-        return testMaxRange;
+        return testWeaponMaxRange;
     }
 
-    public int GetTestMinRange()
+    public int GetTestWeaponMinRange()
     {
-        return testMinRange;
+        return testWeaponMinRange;
     }
 
-    public int GetTestRateOfFire()
+    public int GetTestWeaponRateOfFire()
     {
-        return testMaxRange;
+        return testWeaponMaxRange;
     }
 
-    public int GetTestDamageValue()
+    public int GetTestWeaponDamageValue()
     {
-        return testMaxRange;
+        return testWeaponMaxRange;
     }
 
 

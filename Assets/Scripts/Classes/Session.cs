@@ -4,7 +4,7 @@ public static class Session
 {
 	private static User curentUser;
 	private static Bullet[] bulletTable = { new Bullet(1) };
-	private static GameStateEnum gameState;
+	private static GameStateEnum gameState = GameStateEnum.GamePending;
 	private static bool muteAudio = false;
 	private static float timeScale = 1f;
 
