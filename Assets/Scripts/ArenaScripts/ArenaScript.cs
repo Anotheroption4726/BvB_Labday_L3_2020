@@ -1,67 +1,70 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ArenaScript : MonoBehaviour
 {
-    [SerializeField] private RobotScript playerRobot;
-    [SerializeField] private RobotScript enemyRobot;
+    [SerializeField] private GameObject playerRobotGameObject;
+    [SerializeField] private GameObject enemyRobotGameObject;
+    private RobotScript playerRobotScript;
+    private RobotScript enemyRobotScript;
 
-    void Awake()
+    private void Awake()
     {
+        playerRobotScript = playerRobotGameObject.GetComponent<RobotScript>();
+        enemyRobotScript = enemyRobotGameObject.GetComponent<RobotScript>();
+
         if (Session.GetCurentUser() == null)
         {
-            playerRobot.SetRobot(
+            playerRobotScript.SetRobot(
                 new Robot_Player(
                     new Weapon(
-                        new Bullet(playerRobot.GetTestWeaponBulletId()),
-                        playerRobot.GetTestWeaponBulletSpeed(),
-                        playerRobot.GetTestWeaponMaxRange(),
-                        playerRobot.GetTestWeaponMinRange(),
-                        playerRobot.GetTestWeaponRateOfFire(),
-                        playerRobot.GetTestWeaponDamageValue()
+                        new Bullet(playerRobotScript.GetTestWeaponBulletId()),
+                        playerRobotScript.GetTestWeaponBulletSpeed(),
+                        playerRobotScript.GetTestWeaponMaxRange(),
+                        playerRobotScript.GetTestWeaponMinRange(),
+                        playerRobotScript.GetTestWeaponRateOfFire(),
+                        playerRobotScript.GetTestWeaponDamageValue()
                     ),
-                    playerRobot.GetTestStatAttack(),
-                    playerRobot.GetTestStatHp(),
-                    playerRobot.GetTestStatSpeed(),
-                    playerRobot.GetTestBehaviorProximity(),
-                    playerRobot.GetTestBehaviorAgility(),
-                    playerRobot.GetTestBehaviorAggressivity()
+                    playerRobotScript.GetTestStatAttack(),
+                    playerRobotScript.GetTestStatHp(),
+                    playerRobotScript.GetTestStatSpeed(),
+                    playerRobotScript.GetTestBehaviorProximity(),
+                    playerRobotScript.GetTestBehaviorAgility(),
+                    playerRobotScript.GetTestBehaviorAggressivity()
                 )
             );
 
-            enemyRobot.SetRobot(
+            enemyRobotScript.SetRobot(
                 new Robot_Player(
                     new Weapon(
-                        new Bullet(enemyRobot.GetTestWeaponBulletId()),
-                        enemyRobot.GetTestWeaponBulletSpeed(),
-                        enemyRobot.GetTestWeaponMaxRange(),
-                        enemyRobot.GetTestWeaponMinRange(),
-                        enemyRobot.GetTestWeaponRateOfFire(),
-                        enemyRobot.GetTestWeaponDamageValue()
+                        new Bullet(enemyRobotScript.GetTestWeaponBulletId()),
+                        enemyRobotScript.GetTestWeaponBulletSpeed(),
+                        enemyRobotScript.GetTestWeaponMaxRange(),
+                        enemyRobotScript.GetTestWeaponMinRange(),
+                        enemyRobotScript.GetTestWeaponRateOfFire(),
+                        enemyRobotScript.GetTestWeaponDamageValue()
                     ),
-                    enemyRobot.GetTestStatAttack(),
-                    enemyRobot.GetTestStatHp(),
-                    enemyRobot.GetTestStatSpeed(),
-                    enemyRobot.GetTestBehaviorProximity(),
-                    enemyRobot.GetTestBehaviorAgility(),
-                    enemyRobot.GetTestBehaviorAggressivity()
+                    enemyRobotScript.GetTestStatAttack(),
+                    enemyRobotScript.GetTestStatHp(),
+                    enemyRobotScript.GetTestStatSpeed(),
+                    enemyRobotScript.GetTestBehaviorProximity(),
+                    enemyRobotScript.GetTestBehaviorAgility(),
+                    enemyRobotScript.GetTestBehaviorAggressivity()
                 )
             );
 
-            playerRobot.SetRobotState(RobotStateEnum.Ready);
-            enemyRobot.SetRobotState(RobotStateEnum.Ready);
-        }
-
-        if (playerRobot.GetRobotState().Equals(RobotStateEnum.Ready) && enemyRobot.GetRobotState().Equals(RobotStateEnum.Ready))
-        {
-            Session.SetGameState(GameStateEnum.GameStarted);
+            playerRobotScript.SetRobotState(RobotStateEnum.Ready);
+            enemyRobotScript.SetRobotState(RobotStateEnum.Ready);
         }
     }
 
 
-    void Update()
+    private void Update()
     {
-        
+        if (Session.GetGameState().Equals(GameStateEnum.GamePending) && playerRobotScript.GetRobotState().Equals(RobotStateEnum.Ready) && enemyRobotScript.GetRobotState().Equals(RobotStateEnum.Ready))
+        {
+            playerRobotScript.SetEnemyRobotGameObject(enemyRobotGameObject);
+            enemyRobotScript.SetEnemyRobotGameObject(playerRobotGameObject);
+            Session.SetGameState(GameStateEnum.GameStarted);
+        }
     }
 }
