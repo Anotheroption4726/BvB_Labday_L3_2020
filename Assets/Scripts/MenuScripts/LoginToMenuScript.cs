@@ -10,5 +10,4 @@ public class LoginToMenuScript : MonoBehaviour
     {
        // SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
-
 }

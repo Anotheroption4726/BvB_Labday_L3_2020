@@ -59,21 +59,92 @@ public static class Server_Database
 		return weaponsTable;
 	}
 
-    public static int GetUserIdFromEmail(string arg_email)
-    {
-        return 1;
-    }
 
-    public static bool CheckUserPassword(int arg_userId, string arg_password)
-    {
-        return true;
-    }
+	//	Methodes table User
+	public static int GetServer_UserIdFromEmail(string arg_email)
+	{
+		return 1;
+	}
 
-    public static AccountTypeEnum GetUserAccountTypeFromEmail(string arg_email)
-    {
-        AccountTypeEnum loc_accountType = AccountTypeEnum.Player;
-        return loc_accountType;
-    }
+	public static AccountTypeEnum GetServer_UserAccountTypeFromUserId(int arg_userId)
+	{
+		AccountTypeEnum loc_accountType = AccountTypeEnum.Player;
+		return loc_accountType;
+	}
 
-    //public static Server_User GetServer_UserFrom
+	public static String GetServer_UserTokenFromUserId(int arg_userId)
+	{
+		return "token";
+	}
+
+	public static bool CheckServer_UserPasswordFromUserId(int arg_userId, string arg_password)
+	{
+		return true;
+	}
+
+	public static int GetServer_UserWinsFromUserId(int arg_userId)
+	{
+		return 1;
+	}
+
+	public static int GetServer_UserLossesFromUserId(int arg_userId)
+	{
+		return 1;
+	}
+
+	public static void IncrementServer_UserWinsFromUserId(int arg_userId)
+	{
+
+	}
+
+	public static void IncrementServer_UserLossesFromUserId(int arg_userId)
+	{
+
+	}
+
+
+	//	Methodes table playerRobots
+	public static Server_Robot_Player GetServer_Robot_PlayerFromUserId(int arg_userId)
+	{
+		return playerRobotsTable[0];
+	}
+
+	public static void SetServer_Robot_PlayerFromUserId(int arg_userId, Server_Robot_Player arg_serverRobot)
+	{
+
+	}
+
+
+	//	Methodes table algoGenRobots
+	public static Server_Robot_AlgoGen GetServer_Robot_AlgoGenFromId(int arg_id)
+	{
+		return algoGenRobotsTable[0];
+	}
+
+
+	//	Methodes table weaponsTable
+	public static Server_Weapon GetServer_WeaponFromWeaponId(int arg_weaponId)
+	{
+		return weaponsTable[0];
+	}
+
+
+	// Methodes de conversion robot serveur en robot local
+	public static Weapon CreateWeaponFromServer(Server_Weapon arg_serverWeapon)
+	{
+		Bullet loc_bullet = Session.GetBulletFromBulletId(arg_serverWeapon.GetBulletId());
+		return new Weapon(loc_bullet, arg_serverWeapon.GetBulletSpeed(), arg_serverWeapon.GetMaxRange(), arg_serverWeapon.GetMinRange(), arg_serverWeapon.GetRateOfFire(), arg_serverWeapon.GetDamageValue());
+	}
+
+	public static Robot_Player CreateRobot_PlayerFromServer(Server_Robot_Player arg_serverRobot)
+	{
+		Weapon loc_weapon = CreateWeaponFromServer(GetServer_WeaponFromWeaponId(arg_serverRobot.GetWeaponId()));
+		return new Robot_Player(loc_weapon, arg_serverRobot.GetStatAttack(), arg_serverRobot.GetStatHp(), arg_serverRobot.GetStatSpeed(), arg_serverRobot.GetBehaviorProximity(), arg_serverRobot.GetbehaviorAgility(), arg_serverRobot.GetBehaviorAggressivity());
+	}
+
+	public static Robot_AlgoGen CreateRobot_AlgoGenFromServer(Server_Robot_AlgoGen arg_serverRobot)
+	{
+		Weapon loc_weapon = CreateWeaponFromServer(GetServer_WeaponFromWeaponId(arg_serverRobot.GetWeaponId()));
+		return new Robot_AlgoGen(arg_serverRobot.GetAlgoGenId(), arg_serverRobot.GetWins(), arg_serverRobot.GetLosses(), loc_weapon, arg_serverRobot.GetStatAttack(), arg_serverRobot.GetStatHp(), arg_serverRobot.GetStatSpeed(), arg_serverRobot.GetBehaviorProximity(), arg_serverRobot.GetbehaviorAgility(), arg_serverRobot.GetBehaviorAggressivity());
+	}
 }

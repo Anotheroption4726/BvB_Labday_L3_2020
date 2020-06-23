@@ -3,8 +3,7 @@
 public static class Session
 {
 	private static User curentUser;
-	private static SessionTypeEnum curentSessionType = SessionTypeEnum.GameTest;
-	// ^ DELETE: type de session déterminé par UserType. Si User == null, alors session test par défaut
+	private static Bullet[] bulletTable = { new Bullet(1) };
 	private static GameStateEnum gameState;
 	private static bool muteAudio = false;
 	private static float timeScale = 1f;
@@ -16,9 +15,9 @@ public static class Session
 		return curentUser;
 	}
 
-	public static SessionTypeEnum GetCurentSessionType()
+	public static Bullet GetBulletFromBulletId(int arg_bulletId)
 	{
-		return curentSessionType;
+		return bulletTable[0];
 	}
 
 	public static GameStateEnum GetGameState()
@@ -38,31 +37,28 @@ public static class Session
 
 
 	// Setters
-	public static void GetCurentUser(User arg_curentUser)
+	public static void SetCurentUser_Player(int arg_userId, AccountTypeEnum arg_accountType, string arg_token, Robot_Player arg_robotPlayer, Robot_AlgoGen arg_robotEnemy)
 	{
-		curentUser = arg_curentUser;
+		curentUser = new User_Player(arg_userId, arg_accountType, arg_token, arg_robotPlayer, arg_robotEnemy);
 	}
 
-	public static void GetCurentSessionType(SessionTypeEnum arg_curentSessionType)
+	public static void SetCurentUser_Developper(int arg_userId, AccountTypeEnum arg_accountType, string arg_token, Robot_AlgoGen[] arg_robotGenerationTable)
 	{
-		curentSessionType = arg_curentSessionType;
+		curentUser = new User_Developper(arg_userId, arg_accountType, arg_token, arg_robotGenerationTable);
 	}
 
-	public static void GetGameState(GameStateEnum arg_gameState)
+	public static void SetGameState(GameStateEnum arg_gameState)
 	{
 		gameState = arg_gameState;
 	}
 
-	public static void GetMuteAudio(bool arg_muteAudio)
+	public static void SetMuteAudio(bool arg_muteAudio)
 	{
 		muteAudio = arg_muteAudio;
 	}
 
-	public static void GetTimeScale(float arg_timeScale)
+	public static void SetTimeScale(float arg_timeScale)
 	{
 		timeScale = arg_timeScale;
 	}
-
-
-	// Methodes de gestion de combat, d'edition et d'algo genetique
 }
