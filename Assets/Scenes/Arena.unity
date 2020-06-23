@@ -15866,7 +15866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d67078c1a5f0a1646b753ede482634b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyRobotGameObject: {fileID: 0}
+  enemyRobotGameObject: {fileID: 504275344}
   testStatAttack: 0
   testStatHp: 0
   testStatSpeed: 25
@@ -21630,7 +21630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d67078c1a5f0a1646b753ede482634b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyRobotGameObject: {fileID: 0}
+  enemyRobotGameObject: {fileID: 349815612}
   testStatAttack: 0
   testStatHp: 0
   testStatSpeed: 75

@@ -45,14 +45,7 @@ public class ArenaScript : MonoBehaviour
     {
         arg_robotScript.SetRobot(
             new Robot_Player(
-                new Weapon(
-                    new Bullet(arg_robotScript.GetTestWeaponBulletId()),
-                    arg_robotScript.GetTestWeaponBulletSpeed(),
-                    arg_robotScript.GetTestWeaponMaxRange(),
-                    arg_robotScript.GetTestWeaponMinRange(),
-                    arg_robotScript.GetTestWeaponRateOfFire(),
-                    arg_robotScript.GetTestWeaponDamageValue()
-                ),
+                0,
                 arg_robotScript.GetTestStatAttack(),
                 arg_robotScript.GetTestStatHp(),
                 arg_robotScript.GetTestStatSpeed(),

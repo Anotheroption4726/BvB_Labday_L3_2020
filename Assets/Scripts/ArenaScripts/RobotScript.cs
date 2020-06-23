@@ -140,12 +140,12 @@ public class RobotScript : MonoBehaviour
 
             if (RobotCheckAngle(transform, enemyRobotGameObject.transform.position))
             {
-                if (RobotCheckRange(transform, enemyRobotGameObject.transform.position) >= robot.GetWeapon().GetMaxRange())
+                if (RobotCheckRange(transform, enemyRobotGameObject.transform.position) >= Session.GetWeaponFromId(robot.GetWeaponId()).GetMaxRange())
                 {
                     RobotMove(1, robotRigidbody);
                     RobotDodge(transform, robotRigidbody);
                 }
-                else if (RobotCheckRange(transform, enemyRobotGameObject.transform.position) <= robot.GetWeapon().GetMinRange())
+                else if (RobotCheckRange(transform, enemyRobotGameObject.transform.position) <= Session.GetWeaponFromId(robot.GetWeaponId()).GetMinRange())
                 {
                     RobotMove(-1, robotRigidbody);
                     RobotDodge(transform, robotRigidbody);
