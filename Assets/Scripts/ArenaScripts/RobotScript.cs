@@ -15,6 +15,22 @@ public class RobotScript : MonoBehaviour
     //  Components
     private Rigidbody robotRigidbody;
 
+    //  Test Parameters
+    [SerializeField] private int testStatAttack;
+    [SerializeField] private int testStatHp;
+    [SerializeField] private int testStatSpeed;
+
+    [SerializeField] private int testBehaviorProximity;
+    [SerializeField] private int testBehaviorAgility;
+    [SerializeField] private int testBehaviorAggressivity;
+
+    [SerializeField] private int testBulletId;
+    [SerializeField] private int testBulletSpeed;
+    [SerializeField] private int testMaxRange;
+    [SerializeField] private int testMinRange;
+    [SerializeField] private int testRateOfFire;
+    [SerializeField] private int testDamageValue;
+
 
     //  Getters
     public Robot GetRobot()
@@ -25,6 +41,66 @@ public class RobotScript : MonoBehaviour
     public RobotStateEnum GetRobotState()
     {
         return robotState;
+    }
+
+    public int GetTestStatAttack()
+    {
+        return testStatAttack;
+    }
+
+    public int GetTestStatHp()
+    {
+        return testStatHp;
+    }
+
+    public int GetTestStatSpeed()
+    {
+        return testStatSpeed;
+    }
+
+    public int GetTestBehaviorProximity()
+    {
+        return testBehaviorProximity;
+    }
+
+    public int GetTestBehaviorAgility()
+    {
+        return testBehaviorAgility;
+    }
+
+    public int GetTestBehaviorAggressivity()
+    {
+        return testBehaviorAggressivity;
+    }
+
+    public int GetTestBulletId()
+    {
+        return testBulletId;
+    }
+
+    public int GetTestBulletSpeed()
+    {
+        return testBulletSpeed;
+    }
+
+    public int GetTestMaxRange()
+    {
+        return testMaxRange;
+    }
+
+    public int GetTestMinRange()
+    {
+        return testMinRange;
+    }
+
+    public int GetTestRateOfFire()
+    {
+        return testMaxRange;
+    }
+
+    public int GetTestDamageValue()
+    {
+        return testMaxRange;
     }
 
 

@@ -15675,6 +15675,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d67078c1a5f0a1646b753ede482634b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyRobotGameObject: {fileID: 0}
+  testStatAttack: 0
+  testStatHp: 0
+  testStatSpeed: 0
+  testBehaviorProximity: 0
+  testBehaviorAgility: 0
+  testBehaviorAggressivity: 0
+  testBulletId: 0
+  testBulletSpeed: 0
+  testMaxRange: 0
+  testMinRange: 0
+  testRateOfFire: 0
+  testDamageValue: 0
 --- !u!1 &533964571
 GameObject:
   m_ObjectHideFlags: 0
@@ -31106,6 +31119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1178968414}
+  - component: {fileID: 1178968415}
   m_Layer: 0
   m_Name: ArenaManager
   m_TagString: Untagged
@@ -31127,6 +31141,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1178968415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178968413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 394e9df62da23c3429a23347d9cc0d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1218506281
 GameObject:
   m_ObjectHideFlags: 0
