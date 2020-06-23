@@ -69,7 +69,6 @@ public static class Server_Database
         {
             if (lp_user.GetEmail() == arg_email)
             {
-                Debug.Log(lp_user.GetId());
                 return lp_user.GetId();
             }
         }
@@ -82,7 +81,6 @@ public static class Server_Database
         {
             if (lp_user.GetId() == arg_userId)
             {
-                Debug.Log(lp_user.GetAccountType());
                 return lp_user.GetAccountType();
             }
         }
@@ -92,8 +90,16 @@ public static class Server_Database
 
 	public static String GetServer_UserTokenFromUserId(int arg_userId)
 	{
-		return "token";
-	}
+        foreach (Server_User lp_user in usersTable)
+        {
+            if (lp_user.GetId() == arg_userId)
+            {
+                return lp_user.GetToken();
+            }
+        }
+
+        return "token";
+    }
 
 	public static bool CheckServer_UserPasswordFromUserId(int arg_userId, string arg_password)
 	{
@@ -101,7 +107,6 @@ public static class Server_Database
         {
             if (lp_user.GetId() == arg_userId && lp_user.GetPassword() == arg_password)
             {
-                Debug.Log("authentification réussie");
                 return true;
             }
                 
@@ -112,23 +117,57 @@ public static class Server_Database
 
 	public static int GetServer_UserWinsFromUserId(int arg_userId)
 	{
-		return 1;
+        foreach (Server_User lp_user in usersTable)
+        {
+            if (lp_user.GetId() == arg_userId)
+            {
+                return lp_user.GetWins();
+            }
+
+        }
+
+        return 0;
 	}
 
 	public static int GetServer_UserLossesFromUserId(int arg_userId)
 	{
-		return 1;
-	}
+        foreach (Server_User lp_user in usersTable)
+        {
+            if (lp_user.GetId() == arg_userId)
+            {
+                return lp_user.GetLosses();
+            }
+
+        }
+
+        return 0;
+    }
 
 	public static void IncrementServer_UserWinsFromUserId(int arg_userId)
 	{
+        foreach (Server_User lp_user in usersTable)
+        {
+            if (lp_user.GetId() == arg_userId)
+            {
+                int losses = lp_user.GetLosses();
+                lp_user.SetLosses(losses+1);
+            }
 
-	}
+        }
+    }
 
 	public static void IncrementServer_UserLossesFromUserId(int arg_userId)
 	{
+        foreach (Server_User lp_user in usersTable)
+        {
+            if (lp_user.GetId() == arg_userId)
+            {
+                int wins = lp_user.GetWins();
+                lp_user.SetWins(wins + 1);
+            }
 
-	}
+        }
+    }
 
 
 	//	Methodes table playerRobots
