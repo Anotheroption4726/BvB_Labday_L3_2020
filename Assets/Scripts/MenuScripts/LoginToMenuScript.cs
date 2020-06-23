@@ -8,6 +8,6 @@ public class LoginToMenuScript : MonoBehaviour
 {
     public void NavigationMenu()
     {
-       // SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+       SceneManager.LoadScene("MenuMainScene", LoadSceneMode.Single);
     }
 }
