@@ -9,6 +9,9 @@ public class RobotScript : MonoBehaviour
     private RobotStateEnum robotState = RobotStateEnum.Born;
     private RobotAnimStateEnum robotAnimState = RobotAnimStateEnum.Idle;
 
+    //  External
+    [SerializeField] private GameObject enemyRobotGameObject;
+
     //  Components
     private Rigidbody robotRigidbody;
 
@@ -46,6 +49,9 @@ public class RobotScript : MonoBehaviour
     
     void FixedUpdate()
     {
-        
+        if (Session.GetGameState().Equals(GameStateEnum.GameStarted))
+        {
+
+        }
     }
 }
