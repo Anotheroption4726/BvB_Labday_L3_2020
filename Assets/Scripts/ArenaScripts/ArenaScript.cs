@@ -54,5 +54,17 @@ public class ArenaScript : MonoBehaviour
                 arg_robotScript.GetTestBehaviorAggressivity()
             )
         );
+
+        arg_robotScript.SetWeapon(
+            new Weapon(
+                0,
+                arg_robotScript.GetTestWeaponBulletId(),
+                arg_robotScript.GetTestWeaponBulletSpeed(),
+                arg_robotScript.GetTestWeaponMaxRange(),
+                arg_robotScript.GetTestWeaponMinRange(),
+                arg_robotScript.GetTestWeaponRateOfFire(),
+                arg_robotScript.GetTestWeaponDamageValue()
+            )
+        );
     }
 }

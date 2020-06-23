@@ -7,6 +7,7 @@ public class RobotScript : MonoBehaviour
 {
     //  Paramaters
     private Robot robot;
+    private Weapon weapon;
     private RobotStateEnum robotState = RobotStateEnum.Born;
     private RobotAnimStateEnum robotAnimState = RobotAnimStateEnum.Idle;
     [SerializeField] private GameObject enemyRobotGameObject;
@@ -35,6 +36,11 @@ public class RobotScript : MonoBehaviour
     public Robot GetRobot()
     {
         return robot;
+    }
+
+    public Weapon GetWeapon()
+    {
+        return weapon;
     }
 
     public RobotStateEnum GetRobotState()
@@ -109,6 +115,11 @@ public class RobotScript : MonoBehaviour
         robot = arg_robot;
     }
 
+    public void SetWeapon(Weapon arg_weapon)
+    {
+        weapon = arg_weapon;
+    }
+
     public void SetRobotState(RobotStateEnum arg_robotState)
     {
         robotState = arg_robotState;
@@ -140,12 +151,12 @@ public class RobotScript : MonoBehaviour
 
             if (RobotCheckAngle(transform, enemyRobotGameObject.transform.position))
             {
-                if (RobotCheckRange(transform, enemyRobotGameObject.transform.position) >= Session.GetWeaponFromId(robot.GetWeaponId()).GetMaxRange())
+                if (RobotCheckRange(transform, enemyRobotGameObject.transform.position) >= weapon.GetMaxRange())
                 {
                     RobotMove(1, robotRigidbody);
                     RobotDodge(transform, robotRigidbody);
                 }
-                else if (RobotCheckRange(transform, enemyRobotGameObject.transform.position) <= Session.GetWeaponFromId(robot.GetWeaponId()).GetMinRange())
+                else if (RobotCheckRange(transform, enemyRobotGameObject.transform.position) <= weapon.GetMinRange())
                 {
                     RobotMove(-1, robotRigidbody);
                     RobotDodge(transform, robotRigidbody);
