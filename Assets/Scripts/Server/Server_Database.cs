@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using UnityEngine;
 
 public static class Server_Database
 {
@@ -6,7 +8,7 @@ public static class Server_Database
 	//	email
 	//	password
 	//	accountType
-	private static Server_User[] usersTable = { new Server_User(1, "testemail@bvb.com", "testpassword", AccountTypeEnum.Player) };
+	private static Server_User[] usersTable = { new Server_User(1, "testemail@bvb.com", "testpassword", AccountTypeEnum.Player), new Server_User(2, "email@bvb.com", "password", AccountTypeEnum.Developper) };
 
 	//	userId
 	//	weaponId
@@ -63,7 +65,15 @@ public static class Server_Database
 	//	Methodes table User
 	public static int GetServer_UserIdFromEmail(string arg_email)
 	{
-		return 1;
+        foreach (Server_User lp_user in usersTable)
+        {
+            if (lp_user.GetEmail() == arg_email)
+            {
+                Debug.Log(lp_user.GetId());
+                return lp_user.GetId();
+            }
+        }
+        return 0;
 	}
 
 	public static AccountTypeEnum GetServer_UserAccountTypeFromUserId(int arg_userId)
