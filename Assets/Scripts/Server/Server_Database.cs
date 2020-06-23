@@ -74,6 +74,7 @@ public static class Server_Database
         return AccountTypeEnum.Player ;
 	}
 
+	/*
 	public static String GetServer_UserTokenFromUserId(int arg_userId)
 	{
         foreach (Server_User lp_user in usersTable)
@@ -86,6 +87,7 @@ public static class Server_Database
 
         return "token";
     }
+	*/
 
 	public static bool CheckServer_UserPasswordFromUserId(int arg_userId, string arg_password)
 	{
@@ -159,19 +161,41 @@ public static class Server_Database
 	//	Methodes table playerRobots
 	public static Server_Robot_Player GetServer_Robot_PlayerFromUserId(int arg_userId)
 	{
-		return playerRobotsTable[0];
+		foreach (Server_Robot_Player lp_robotPlayer in playerRobotsTable)
+		{
+			if (lp_robotPlayer.GetUserId() == arg_userId)
+			{
+				return lp_robotPlayer;
+			}
+
+		}
+		return null;
 	}
 
 	public static void SetServer_Robot_PlayerFromUserId(int arg_userId, Server_Robot_Player arg_serverRobot)
 	{
-
+		for (int i = 0; i < playerRobotsTable.Length; i++)
+		{
+			if (playerRobotsTable[i].GetUserId() == arg_userId)
+			{
+				playerRobotsTable[i] = arg_serverRobot;
+				break;
+			}
+		}
 	}
 
 
 	//	Methodes table algoGenRobots
-	public static Server_Robot_AlgoGen GetServer_Robot_AlgoGenFromId(int arg_id)
+	public static Server_Robot_AlgoGen GetServer_Robot_AlgoGenFromId(int algoGen_id)
 	{
-		return algoGenRobotsTable[0];
+		foreach (Server_Robot_AlgoGen lp_robotAlgoGen in algoGenRobotsTable)
+		{
+			if (lp_robotAlgoGen.GetAlgoGenId() == algoGen_id)
+			{
+				return lp_robotAlgoGen;
+			}
+		}
+		return null;
 	}
 
 
