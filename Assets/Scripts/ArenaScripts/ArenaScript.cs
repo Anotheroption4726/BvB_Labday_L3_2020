@@ -6,7 +6,7 @@ public class ArenaScript : MonoBehaviour
     [SerializeField] private GameObject enemyRobotGameObject;
     private RobotScript playerRobotScript;
     private RobotScript enemyRobotScript;
-    private static Bullet[] bulletTable = { new Bullet(1) };
+    [SerializeField] private static GameObject[] bulletTable = { };
     private static Weapon[] weaponTable = { new Weapon(1, 1, 4, 8, 4, 4, 2), new Weapon(2, 1, 2, 14, 8, 1, 4) };
 
     private void Awake()
@@ -41,10 +41,10 @@ public class ArenaScript : MonoBehaviour
         }
     }
 
-
-    public static Bullet GetBulletFromId(int arg_bulletId)
+    /*
+    public static GameObject GetBulletFromId(int arg_bulletId)
     {
-        foreach (Bullet lp_bullet in bulletTable)
+        foreach (GameObject lp_bullet in bulletTable)
         {
             if (lp_bullet.GetId() == arg_bulletId)
             {
@@ -53,6 +53,7 @@ public class ArenaScript : MonoBehaviour
         }
         return null;
     }
+    */
 
     public static Weapon GetWeaponFromId(int arg_weaponId)
     {
