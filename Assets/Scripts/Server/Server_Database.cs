@@ -74,21 +74,6 @@ public static class Server_Database
         return AccountTypeEnum.Player ;
 	}
 
-	/*
-	public static String GetServer_UserTokenFromUserId(int arg_userId)
-	{
-        foreach (Server_User lp_user in usersTable)
-        {
-            if (lp_user.GetId() == arg_userId)
-            {
-                return lp_user.GetToken();
-            }
-        }
-
-        return "token";
-    }
-	*/
-
 	public static bool CheckServer_UserPasswordFromUserId(int arg_userId, string arg_password)
 	{
         foreach (Server_User lp_user in usersTable)
