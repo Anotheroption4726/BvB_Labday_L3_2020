@@ -30,15 +30,6 @@ public static class Server_Database
 	//	behaviorAggressivity
 	private static Server_Robot_AlgoGen[] algoGenRobotsTable = { new Server_Robot_AlgoGen(1, 2, 10, 70, 20, 0, 20, 10) };
 
-	//	id
-	//	bulletId
-	//	bulletSpeed
-	//	maxRange
-	//	minRange
-	//	rateOfFire
-	//	damageValue
-	//	private static Server_Weapon[] weaponsTable = { new Server_Weapon(1, 1, 4, 8, 4, 4, 2), new Server_Weapon(2, 1, 2, 14, 8, 1, 4) };
-
 
 	//	Getters
 	public static Server_User[] GetUsersTable()
@@ -55,13 +46,6 @@ public static class Server_Database
 	{
 		return algoGenRobotsTable;
 	}
-
-	/*
-	public static Server_Weapon[] GetWeaponsTable()
-	{
-		return weaponsTable;
-	}
-	*/
 
 
 	//	Methodes table User
@@ -190,32 +174,14 @@ public static class Server_Database
 		return algoGenRobotsTable[0];
 	}
 
-	/*
-	//	Methodes table weaponsTable
-	public static Server_Weapon GetServer_WeaponFromWeaponId(int arg_weaponId)
-	{
-		return weaponsTable[0];
-	}
-	*/
-
-	// Methodes de conversion robot serveur en robot local
-	/*
-	public static Weapon CreateWeaponFromServer(Server_Weapon arg_serverWeapon)
-	{
-		Bullet loc_bullet = Session.GetBulletFromBulletId(arg_serverWeapon.GetBulletId());
-		return new Weapon(loc_bullet, arg_serverWeapon.GetBulletSpeed(), arg_serverWeapon.GetMaxRange(), arg_serverWeapon.GetMinRange(), arg_serverWeapon.GetRateOfFire(), arg_serverWeapon.GetDamageValue());
-	}
-	*/
 
 	public static Robot_Player CreateRobot_PlayerFromServer(Server_Robot_Player arg_serverRobot)
 	{
-		//Weapon loc_weapon = CreateWeaponFromServer(GetServer_WeaponFromWeaponId(arg_serverRobot.GetWeaponId()));
 		return new Robot_Player(arg_serverRobot.GetWeaponId(), arg_serverRobot.GetStatAttack(), arg_serverRobot.GetStatHp(), arg_serverRobot.GetStatSpeed(), arg_serverRobot.GetBehaviorProximity(), arg_serverRobot.GetbehaviorAgility(), arg_serverRobot.GetBehaviorAggressivity());
 	}
 
 	public static Robot_AlgoGen CreateRobot_AlgoGenFromServer(Server_Robot_AlgoGen arg_serverRobot)
 	{
-		//Weapon loc_weapon = CreateWeaponFromServer(GetServer_WeaponFromWeaponId(arg_serverRobot.GetWeaponId()));
 		return new Robot_AlgoGen(arg_serverRobot.GetAlgoGenId(), arg_serverRobot.GetWins(), arg_serverRobot.GetLosses(), arg_serverRobot.GetWeaponId(), arg_serverRobot.GetStatAttack(), arg_serverRobot.GetStatHp(), arg_serverRobot.GetStatSpeed(), arg_serverRobot.GetBehaviorProximity(), arg_serverRobot.GetbehaviorAgility(), arg_serverRobot.GetBehaviorAggressivity());
 	}
 }
