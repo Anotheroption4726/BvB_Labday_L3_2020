@@ -23,8 +23,8 @@ public class ArenaScript : MonoBehaviour
             {
                 if (Game.GetCurentUser() == null)
                 {
-                    SetTestRobot(playerRobotScript);
-                    SetTestRobot(enemyRobotScript);
+                    SetTestRobot(0, playerRobotScript);
+                    SetTestRobot(1, enemyRobotScript);
 
                     playerRobotScript.SetRobotState(RobotStateEnum.Ready);
                     enemyRobotScript.SetRobotState(RobotStateEnum.Ready);
@@ -57,8 +57,10 @@ public class ArenaScript : MonoBehaviour
 
 
     //  Methode d'assignement de robot test
-    private void SetTestRobot(RobotScript arg_robotScript)
+    private void SetTestRobot(int arg_inGameId, RobotScript arg_robotScript)
     {
+        arg_robotScript.SetInGameId(arg_inGameId);
+
         arg_robotScript.SetRobot(
             new Robot_Player(
                 0,

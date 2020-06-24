@@ -3,7 +3,11 @@ using UnityEngine;
 
 public class RobotAnimationsScript : MonoBehaviour
 {
-	public Transform Bullet;
+	private RobotScript robotScript;
+	private Weapon weapon;
+	private Transform bullet;
+
+
 	public Transform Gun_EndR;
 	public Transform Gun_EndL;
 
@@ -18,8 +22,12 @@ public class RobotAnimationsScript : MonoBehaviour
 
 
 	// Use this for initialization
-	void Start()
+	void Awake()
 	{
+		robotScript = GetComponentInParent<RobotScript>();
+		weapon = robotScript.GetWeapon();
+		bullet = robotScript.GetBullet().transform;
+
 		m_AudioSource = GetComponent<AudioSource>();
 	}
 
@@ -85,10 +93,10 @@ public class RobotAnimationsScript : MonoBehaviour
 			pos_side = Gun_EndL.transform.position;
 		}
 
-		var gameOb = (Transform)Instantiate(Bullet, pos_side, Quaternion.LookRotation(-transform.forward));
+		var gameOb = (Transform)Instantiate(bullet, pos_side, Quaternion.LookRotation(-transform.forward));
 
-		Vector3 dir =-transform.right*shellSpeed;
-		gameOb.GetComponent<Rigidbody>().AddForce( dir);
+		gameOb.gameObject.GetComponent<BulletScript_Main>().SetRobotInGameId(robotScript.GetInGameId());
+		gameOb.GetComponent<Rigidbody>().AddForce(-transform.right * Convert.ToSingle(weapon.GetBulletSpeed()) * 200);
 
 		m_AudioSource.PlayOneShot(s_Fire);
 	}

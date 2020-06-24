@@ -6,6 +6,7 @@ using UnityEngine;
 public class RobotScript : MonoBehaviour
 {
     //  Paramaters
+    private int inGameId;
     private Robot robot;
     private Weapon weapon;
     private GameObject bullet;
@@ -34,6 +35,11 @@ public class RobotScript : MonoBehaviour
 
 
     //  Getters
+    public int GetInGameId()
+    {
+        return inGameId;
+    }
+
     public Robot GetRobot()
     {
         return robot;
@@ -116,6 +122,11 @@ public class RobotScript : MonoBehaviour
 
 
     //  Setters
+    public void SetInGameId(int arg_inGameId)
+    {
+        inGameId = arg_inGameId;
+    }
+
     public void SetRobot(Robot arg_robot)
     {
         robot = arg_robot;
