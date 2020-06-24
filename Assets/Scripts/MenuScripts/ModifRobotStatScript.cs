@@ -34,6 +34,8 @@ public class ModifRobotStatScript : MonoBehaviour
         hpPlus.onClick.AddListener(LifePlus);
         speedPlus.onClick.AddListener(SpeedPlus);
         speedMoins.onClick.AddListener(SpeedMoins);
+        precedentWeapon.onClick.AddListener(PreWeapon);
+        nextWeapon.onClick.AddListener(NextWeapon);
 
     }
     // Start is called before the first frame update
@@ -106,6 +108,22 @@ public class ModifRobotStatScript : MonoBehaviour
             loc_player.GetUserRobot().SetStatSpeed(loc_player.GetUserRobot().GetStatSpeed() - 10);
             speed.text = (loc_player.GetUserRobot().GetStatSpeed()).ToString();
             pointsSPEED.text = speed.text;
+        }
+    }
+
+    public void PreWeapon()
+    {
+        if(weaponName.text == "Weapon 2")
+        {
+            weaponName.text = "Weapon 1";
+        }
+    }
+
+    public void NextWeapon()
+    {
+        if (weaponName.text == "Weapon 1")
+        {
+            weaponName.text = "Weapon 2";
         }
     }
 }
