@@ -84,6 +84,19 @@ public static class Server_Database
 		return null;
 	}
 
+	public static String GetUserTokenFromUserId(int arg_userId)
+	{
+		foreach (Server_User lp_serverUser in usersTable)
+		{
+			if (lp_serverUser.GetId() == arg_userId)
+			{
+				return lp_serverUser.GetToken();
+			}
+		}
+
+		return "";
+	}
+
 	public static int GetServer_UserWinsFromUserId(int arg_userId)
 	{
         foreach (Server_User lp_user in usersTable)
@@ -92,7 +105,6 @@ public static class Server_Database
             {
                 return lp_user.GetWins();
             }
-
         }
 
         return 0;
@@ -106,35 +118,40 @@ public static class Server_Database
             {
                 return lp_user.GetLosses();
             }
-
         }
 
         return 0;
     }
 
-	public static void IncrementServer_UserWinsFromUserId(int arg_userId)
+	public static void IncrementServer_UserWinsFromUserId(int arg_userId, string arg_userToken)
 	{
         foreach (Server_User lp_user in usersTable)
         {
             if (lp_user.GetId() == arg_userId)
             {
-                int loc_losses = lp_user.GetLosses();
-                lp_user.SetLosses(loc_losses+1);
+				if (lp_user.GetToken() == arg_userToken)
+				{
+					int loc_losses = lp_user.GetLosses();
+					lp_user.SetLosses(loc_losses + 1);
+					break;
+				}   
             }
-
         }
     }
 
-	public static void IncrementServer_UserLossesFromUserId(int arg_userId)
+	public static void IncrementServer_UserLossesFromUserId(int arg_userId, string arg_userToken)
 	{
         foreach (Server_User lp_user in usersTable)
         {
             if (lp_user.GetId() == arg_userId)
             {
-                int loc_wins = lp_user.GetWins();
-                lp_user.SetWins(loc_wins + 1);
+				if (lp_user.GetToken() == arg_userToken)
+				{
+					int loc_wins = lp_user.GetWins();
+					lp_user.SetWins(loc_wins + 1);
+					break;
+				}	
             }
-
         }
     }
 
@@ -152,14 +169,17 @@ public static class Server_Database
 		return null;
 	}
 
-	public static void SetServer_Robot_PlayerFromUserId(int arg_userId, Server_Robot_Player arg_serverRobot)
+	public static void SetServer_Robot_PlayerFromUserId(int arg_userId, Server_Robot_Player arg_serverRobot, string arg_userToken)
 	{
 		for (int i = 0; i < playerRobotsTable.Length; i++)
 		{
 			if (playerRobotsTable[i].GetUserId() == arg_userId)
 			{
-				playerRobotsTable[i] = arg_serverRobot;
-				break;
+				if (GetUserTokenFromUserId(arg_userId) == arg_userToken)
+				{
+					playerRobotsTable[i] = arg_serverRobot;
+					break;
+				}
 			}
 		}
 	}
