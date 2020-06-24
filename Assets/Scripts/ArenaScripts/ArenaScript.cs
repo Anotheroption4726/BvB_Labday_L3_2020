@@ -38,6 +38,9 @@ public class ArenaScript : MonoBehaviour
                     SetTestRobot(0, playerRobotScript);
                     SetTestRobot(1, enemyRobotScript);
 
+                    //Debug.Log("Robot 0 inGameId: " + playerRobotScript.GetInGameId());
+                    //Debug.Log("Robot 1 inGameId: " + enemyRobotScript.GetInGameId());
+
                     playerRobotScript.SetRobotState(RobotStateEnum.Ready);
                     enemyRobotScript.SetRobotState(RobotStateEnum.Ready);
                 }
@@ -99,6 +102,6 @@ public class ArenaScript : MonoBehaviour
         );
 
         arg_robotScript.SetBullet(GetBulletFromId(arg_robotScript.GetWeapon().GetBulletId()));
-        arg_robotScript.GetBullet().GetComponent<BulletScript_Main>().SetRobotInGameId(arg_robotScript.GetInGameId());
+        arg_robotScript.GetBullet().GetComponent<BulletScript_Main>().SetRobotInGameId(arg_inGameId);
     }
 }
