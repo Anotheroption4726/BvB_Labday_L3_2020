@@ -8,7 +8,7 @@ public static class Server_Database
 	//	email
 	//	password
 	//	accountType
-	private static Server_User[] usersTable = { new Server_User(1, "testemail@bvb.com", "testpassword", AccountTypeEnum.Player), new Server_User(2, "email@bvb.com", "password", AccountTypeEnum.Developper) };
+	private static Server_User[] usersTable = { new Server_User(1, "testemail@bvb.com", "testpassword", AccountTypeEnum.Player), new Server_User(2, "dev", "dev", AccountTypeEnum.Developper), new Server_User(3, "bvb", "bvb", AccountTypeEnum.Player) };
 
 	//	userId
 	//	weaponId
@@ -18,7 +18,7 @@ public static class Server_Database
 	//	behaviorProximity
 	//	behaviorAgility
 	//	behaviorAggressivity
-	private static Server_Robot_Player[] playerRobotsTable = { new Server_Robot_Player(1, 1, 30, 50, 40, 0, 40, 50) };
+	private static Server_Robot_Player[] playerRobotsTable = { new Server_Robot_Player(1, 1, 30, 50, 40, 0, 40, 50), new Server_Robot_Player(3, 1, 30, 50, 40, 0, 40, 50) };
 
 	//	algoGenId
 	//	weaponId
