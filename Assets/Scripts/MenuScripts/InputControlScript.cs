@@ -27,9 +27,6 @@ public class InputControlScript : MonoBehaviour
         emailInput = emailField.text; //prend la valeur entrée dans InputFieldEmail
         passwordInput = passwordField.text; //prend la valeur entrée dans InputFieldPassword
 
-        Debug.Log("Email value: " + emailInput);
-        Debug.Log("password value: " + passwordInput);
-
         id_user = GetServer_UserIdFromEmail(emailInput);
 
 

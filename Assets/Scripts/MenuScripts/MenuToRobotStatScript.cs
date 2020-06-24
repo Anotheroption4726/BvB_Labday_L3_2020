@@ -7,6 +7,6 @@ public class MenuToRobotStatScript : MonoBehaviour
 {
     public void NavigationStat()
     {
-        SceneManager.LoadScene("MenuRobotScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("MenustatRobotScene", LoadSceneMode.Single);
     }
 }
