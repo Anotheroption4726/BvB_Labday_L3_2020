@@ -19,4 +19,22 @@ public class BulletScript_Main : MonoBehaviour
     {
         robotInGameId = arg_robotInGameId;
     }
+
+    void OnCollisionEnter(Collision objectCollided)
+    {
+        if (objectCollided.gameObject.tag == "RobotTag")
+        {
+            RobotScript robotCollided;
+            robotCollided = objectCollided.gameObject.GetComponent<RobotScript>();
+
+            if (robotCollided.GetInGameId() != id)
+            {
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 }

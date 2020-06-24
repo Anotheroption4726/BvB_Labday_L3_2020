@@ -23,7 +23,6 @@ public class RobotAnimationsScript : MonoBehaviour
 	// Use this for initialization
 	void Awake()
 	{
-		robotScript = GetComponentInParent<RobotScript>();
 		m_AudioSource = GetComponent<AudioSource>();
 	}
 
@@ -90,6 +89,7 @@ public class RobotAnimationsScript : MonoBehaviour
 			pos_side = Gun_EndL.transform.position;
 		}
 
+		robotScript = GetComponentInParent<RobotScript>();
 		weapon = robotScript.GetWeapon();
 		bullet = robotScript.GetBullet().transform;
 

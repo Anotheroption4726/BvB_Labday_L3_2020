@@ -21295,7 +21295,7 @@ GameObject:
   - component: {fileID: 504275348}
   m_Layer: 0
   m_Name: Robot_0
-  m_TagString: Untagged
+  m_TagString: RobotTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47525,6 +47525,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394e9df62da23c3429a23347d9cc0d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 114969790}
+  muteAudio: 1
   playerRobotGameObject: {fileID: 504275344}
   enemyRobotGameObject: {fileID: 1917262632}
   bulletTable:
@@ -65046,7 +65048,7 @@ GameObject:
   - component: {fileID: 1917262633}
   m_Layer: 0
   m_Name: Robot_1
-  m_TagString: Untagged
+  m_TagString: RobotTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

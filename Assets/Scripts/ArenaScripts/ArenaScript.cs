@@ -2,16 +2,28 @@
 
 public class ArenaScript : MonoBehaviour
 {
+    //  Sound
+    [SerializeField] private AudioListener audioManager;
+    [SerializeField] private bool muteAudio = true;
+
+    //  Robots
     [SerializeField] private GameObject playerRobotGameObject;
     [SerializeField] private GameObject enemyRobotGameObject;
     private RobotScript playerRobotScript;
     private RobotScript enemyRobotScript;
+
+    //  Bullets
     [SerializeField] private GameObject[] bulletTable = { };
 
     private void Awake()
     {
         playerRobotScript = playerRobotGameObject.GetComponent<RobotScript>();
         enemyRobotScript = enemyRobotGameObject.GetComponent<RobotScript>();
+
+        if (muteAudio)
+        {
+            audioManager.enabled = false;
+        }
     }
 
 
@@ -87,5 +99,6 @@ public class ArenaScript : MonoBehaviour
         );
 
         arg_robotScript.SetBullet(GetBulletFromId(arg_robotScript.GetWeapon().GetBulletId()));
+        arg_robotScript.GetBullet().GetComponent<BulletScript_Main>().SetRobotInGameId(arg_robotScript.GetInGameId());
     }
 }
