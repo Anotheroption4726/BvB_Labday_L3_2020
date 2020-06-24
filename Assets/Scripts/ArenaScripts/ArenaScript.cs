@@ -74,6 +74,7 @@ public class ArenaScript : MonoBehaviour
         arg_robotScript.SetWeapon(
             new Weapon(
                 0,
+                "Weapon Test",
                 arg_robotScript.GetTestWeaponBulletId(),
                 arg_robotScript.GetTestWeaponBulletSpeed(),
                 arg_robotScript.GetTestWeaponMaxRange(),

@@ -6,7 +6,7 @@ public static class Game
 	private static GameStateEnum gameState = GameStateEnum.GamePending;
 	private static bool muteAudio = false;
 	private static float timeScale = 1f;
-	private static Weapon[] weaponTable = { new Weapon(1, 1, 4, 8, 4, 4, 2), new Weapon(2, 1, 2, 14, 8, 1, 4) };
+	private static Weapon[] weaponTable = { new Weapon(1, "Weapon 1", 1, 4, 8, 4, 4, 2), new Weapon(2, "Weapon 2", 1, 2, 14, 8, 1, 4) };
 
 
 	// Getters
