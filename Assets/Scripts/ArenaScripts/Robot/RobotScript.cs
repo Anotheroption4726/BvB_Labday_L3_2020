@@ -8,6 +8,7 @@ public class RobotScript : MonoBehaviour
     //  Paramaters
     private Robot robot;
     private Weapon weapon;
+    private GameObject bullet;
     private RobotStateEnum robotState = RobotStateEnum.Born;
     private RobotAnimStateEnum robotAnimState = RobotAnimStateEnum.Idle;
     [SerializeField] private GameObject enemyRobotGameObject;
@@ -41,6 +42,11 @@ public class RobotScript : MonoBehaviour
     public Weapon GetWeapon()
     {
         return weapon;
+    }
+
+    public GameObject GetBullet()
+    {
+        return bullet;
     }
 
     public RobotStateEnum GetRobotState()
@@ -118,6 +124,11 @@ public class RobotScript : MonoBehaviour
     public void SetWeapon(Weapon arg_weapon)
     {
         weapon = arg_weapon;
+    }
+
+    public void SetBullet(GameObject arg_bullet)
+    {
+        bullet = arg_bullet;
     }
 
     public void SetRobotState(RobotStateEnum arg_robotState)

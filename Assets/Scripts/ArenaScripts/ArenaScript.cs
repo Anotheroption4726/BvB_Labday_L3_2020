@@ -6,7 +6,7 @@ public class ArenaScript : MonoBehaviour
     [SerializeField] private GameObject enemyRobotGameObject;
     private RobotScript playerRobotScript;
     private RobotScript enemyRobotScript;
-    [SerializeField] private static GameObject[] bulletTable = { };
+    [SerializeField] private GameObject[] bulletTable = { };
 
     private void Awake()
     {
@@ -41,19 +41,19 @@ public class ArenaScript : MonoBehaviour
     }
 
 
-    /*
     private GameObject GetBulletFromId(int arg_bulletId)
     {
         foreach (GameObject lp_bullet in bulletTable)
         {
-            if (lp_bullet.GetId() == arg_bulletId)
+            BulletScript_Main loc_bulletScriptMain = lp_bullet.GetComponent<BulletScript_Main>();
+
+            if (loc_bulletScriptMain.GetId() == arg_bulletId)
             {
                 return lp_bullet;
             }
         }
         return null;
     }
-    */
 
 
     //  Methode d'assignement de robot test
@@ -83,5 +83,7 @@ public class ArenaScript : MonoBehaviour
                 arg_robotScript.GetTestWeaponDamageValue()
             )
         );
+
+        arg_robotScript.SetBullet(GetBulletFromId(arg_robotScript.GetWeapon().GetBulletId()));
     }
 }
