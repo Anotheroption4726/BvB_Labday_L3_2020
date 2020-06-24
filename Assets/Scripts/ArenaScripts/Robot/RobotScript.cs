@@ -6,14 +6,20 @@ using UnityEngine;
 public class RobotScript : MonoBehaviour
 {
     //  Paramaters
+    private int inGameId;
     private Robot robot;
     private Weapon weapon;
+    private GameObject bullet;
     private RobotStateEnum robotState = RobotStateEnum.Born;
     private RobotAnimStateEnum robotAnimState = RobotAnimStateEnum.Idle;
-    [SerializeField] private GameObject enemyRobotGameObject;
+    private GameObject enemyRobotGameObject;
+
+    private float nextFire;
+    private bool readyToShoot;
 
     //  Components
     private Rigidbody robotRigidbody;
+    private RobotActionsScript animationController;
 
     //  Test Parameters
     [SerializeField] private int testStatAttack;
@@ -33,6 +39,11 @@ public class RobotScript : MonoBehaviour
 
 
     //  Getters
+    public int GetInGameId()
+    {
+        return inGameId;
+    }
+
     public Robot GetRobot()
     {
         return robot;
@@ -41,6 +52,11 @@ public class RobotScript : MonoBehaviour
     public Weapon GetWeapon()
     {
         return weapon;
+    }
+
+    public GameObject GetBullet()
+    {
+        return bullet;
     }
 
     public RobotStateEnum GetRobotState()
@@ -110,6 +126,11 @@ public class RobotScript : MonoBehaviour
 
 
     //  Setters
+    public void SetInGameId(int arg_inGameId)
+    {
+        inGameId = arg_inGameId;
+    }
+
     public void SetRobot(Robot arg_robot)
     {
         robot = arg_robot;
@@ -118,6 +139,11 @@ public class RobotScript : MonoBehaviour
     public void SetWeapon(Weapon arg_weapon)
     {
         weapon = arg_weapon;
+    }
+
+    public void SetBullet(GameObject arg_bullet)
+    {
+        bullet = arg_bullet;
     }
 
     public void SetRobotState(RobotStateEnum arg_robotState)
@@ -135,6 +161,7 @@ public class RobotScript : MonoBehaviour
     {
         //  Getting Robot components
         robotRigidbody = gameObject.GetComponent<Rigidbody>();
+        animationController = GetRobotAnimationController();
     }
 
 
@@ -163,10 +190,27 @@ public class RobotScript : MonoBehaviour
                 }
                 else
                 {
-                    //RobotEventShoot();
+                    RobotShoot();
                 }
             }
         }
+    }
+
+
+    //  Récupération du scricpt gérant les animations
+    RobotActionsScript GetRobotAnimationController()
+    {
+        RobotActionsScript loc_animationController = new RobotActionsScript();
+        Component[] loc_retrievedScripts;
+
+        loc_retrievedScripts = GetComponentsInChildren<RobotActionsScript>();
+
+        foreach (RobotActionsScript lp_animScript in loc_retrievedScripts)
+        {
+            loc_animationController = lp_animScript;
+        }
+
+        return loc_animationController;
     }
 
 
@@ -300,6 +344,38 @@ public class RobotScript : MonoBehaviour
             }
 
             arg_robotRigidbody.velocity = new Vector3(0, 0, arg_robotRigidbody.velocity.z);
+        }
+    }
+
+
+    //  Events d'attaque/tir
+    void RobotShoot()
+    {
+        if (readyToShoot)
+        {
+            animationController.Fire();
+            readyToShoot = false;
+        }
+        else
+        {
+            //AnimationStateChecker(robotAnimStateEnum.Idle);
+            readyToShoot = RobotReload();
+        }
+    }
+
+    public bool RobotReload()
+    {
+        nextFire -= Time.deltaTime;
+        float loc_attackAggressivity = 1 + (Convert.ToSingle(robot.GetBehaviorAggressivity()) / 75);
+
+        if (nextFire <= 0)
+        {
+            nextFire = 1 / (weapon.GetRateOfFire() * loc_attackAggressivity);
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

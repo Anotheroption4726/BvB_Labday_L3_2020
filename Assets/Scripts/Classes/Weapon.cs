@@ -11,7 +11,7 @@ public class Weapon
 	private int minRange;
 	private int rateOfFire;
 	private int damageValue;
-	
+
 
 	//	Constructor
 	public Weapon(int arg_id, string arg_name, int arg_bulletId, int arg_bulletSpeed, int arg_maxRange, int arg_minRange, int arg_rateOfFire, int arg_damageValue)

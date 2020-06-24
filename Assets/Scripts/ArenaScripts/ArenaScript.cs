@@ -2,16 +2,28 @@
 
 public class ArenaScript : MonoBehaviour
 {
+    //  Sound
+    [SerializeField] private AudioListener audioManager;
+    [SerializeField] private bool muteAudio = true;
+
+    //  Robots
     [SerializeField] private GameObject playerRobotGameObject;
     [SerializeField] private GameObject enemyRobotGameObject;
     private RobotScript playerRobotScript;
     private RobotScript enemyRobotScript;
-    [SerializeField] private static GameObject[] bulletTable = { };
+
+    //  Bullets
+    [SerializeField] private GameObject[] bulletTable = { };
 
     private void Awake()
     {
         playerRobotScript = playerRobotGameObject.GetComponent<RobotScript>();
         enemyRobotScript = enemyRobotGameObject.GetComponent<RobotScript>();
+
+        if (muteAudio)
+        {
+            audioManager.enabled = false;
+        }
     }
 
 
@@ -23,8 +35,11 @@ public class ArenaScript : MonoBehaviour
             {
                 if (Game.GetCurentUser() == null)
                 {
-                    SetTestRobot(playerRobotScript);
-                    SetTestRobot(enemyRobotScript);
+                    SetTestRobot(0, playerRobotScript);
+                    SetTestRobot(1, enemyRobotScript);
+
+                    //Debug.Log("Robot 0 inGameId: " + playerRobotScript.GetInGameId());
+                    //Debug.Log("Robot 1 inGameId: " + enemyRobotScript.GetInGameId());
 
                     playerRobotScript.SetRobotState(RobotStateEnum.Ready);
                     enemyRobotScript.SetRobotState(RobotStateEnum.Ready);
@@ -41,24 +56,26 @@ public class ArenaScript : MonoBehaviour
     }
 
 
-    /*
     private GameObject GetBulletFromId(int arg_bulletId)
     {
         foreach (GameObject lp_bullet in bulletTable)
         {
-            if (lp_bullet.GetId() == arg_bulletId)
+            BulletScript_Main loc_bulletScriptMain = lp_bullet.GetComponent<BulletScript_Main>();
+
+            if (loc_bulletScriptMain.GetId() == arg_bulletId)
             {
                 return lp_bullet;
             }
         }
         return null;
     }
-    */
 
 
     //  Methode d'assignement de robot test
-    private void SetTestRobot(RobotScript arg_robotScript)
+    private void SetTestRobot(int arg_inGameId, RobotScript arg_robotScript)
     {
+        arg_robotScript.SetInGameId(arg_inGameId);
+
         arg_robotScript.SetRobot(
             new Robot_Player(
                 0,
@@ -83,5 +100,8 @@ public class ArenaScript : MonoBehaviour
                 arg_robotScript.GetTestWeaponDamageValue()
             )
         );
+
+        arg_robotScript.SetBullet(GetBulletFromId(arg_robotScript.GetWeapon().GetBulletId()));
+        arg_robotScript.GetBullet().GetComponent<BulletScript_Main>().SetRobotInGameId(arg_inGameId);
     }
 }
