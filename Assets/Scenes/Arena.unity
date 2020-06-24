@@ -20936,7 +20936,6 @@ GameObject:
   - component: {fileID: 436669137}
   - component: {fileID: 436669136}
   - component: {fileID: 436669135}
-  - component: {fileID: 436669134}
   - component: {fileID: 436669133}
   m_Layer: 0
   m_Name: Model
@@ -21041,38 +21040,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &436669134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 436669132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6a33059c32fb384c9a9e2c57168bda9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Shell: {fileID: 4038683379846818, guid: b0ab298866360414581b6a182659ff06, type: 3}
-  Gun_EndR: {fileID: 238616291}
-  Gun_EndL: {fileID: 80304956}
-  p_jet:
-  - {fileID: 642861366}
-  - {fileID: 448507801}
-  - {fileID: 1074870940}
-  - {fileID: 333124581}
-  p_hit: {fileID: 1969448602}
-  p_dead: {fileID: 2075281977}
-  p_smoke: {fileID: 1717594612}
-  p_fireL: {fileID: 505971}
-  p_fireSmokeL: {fileID: 996844337}
-  p_fireR: {fileID: 1522343360}
-  p_fireSmokeR: {fileID: 2081975687}
-  s_Fire: {fileID: 8300000, guid: d6a071b9f748d0641a911042e60cc317, type: 3}
-  s_hit: {fileID: 8300000, guid: 38dc9afb12a50554fbec3d93deefffdb, type: 3}
-  s_dead: {fileID: 8300000, guid: 92bc634a950bde046a12ff66b131ec1f, type: 3}
-  s_signal: {fileID: 8300000, guid: 76a98cc2b67b225468ff64d806ac3fa7, type: 3}
-  s_say: {fileID: 8300000, guid: 82e89d2d9080c024485c69445d668e9a, type: 3}
 --- !u!114 &436669135
 MonoBehaviour:
   m_ObjectHideFlags: 0
