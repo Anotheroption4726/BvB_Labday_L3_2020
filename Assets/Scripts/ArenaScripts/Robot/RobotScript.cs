@@ -214,6 +214,36 @@ public class RobotScript : MonoBehaviour
     }
 
 
+    // Fonction de management des Animations
+    void AnimationStateChecker(RobotAnimStateEnum arg_robotStateAnimAfter)
+    {
+        if (robotAnimState != arg_robotStateAnimAfter)
+        {
+            if (arg_robotStateAnimAfter == RobotAnimStateEnum.Idle)
+            {
+                animationController.Idle1();
+            }
+
+            if (arg_robotStateAnimAfter == RobotAnimStateEnum.DodgeRight)
+            {
+                animationController.StrafeRight();
+            }
+
+            if (arg_robotStateAnimAfter == RobotAnimStateEnum.DodgeLeft)
+            {
+                animationController.StrafeLeft();
+            }
+
+            if (arg_robotStateAnimAfter == RobotAnimStateEnum.Dead)
+            {
+                animationController.Dead3();
+            }
+
+            robotAnimState = arg_robotStateAnimAfter;
+        }
+    }
+
+
     //  Normalisation de la Vitesse du RigidBody
     private void NormalizeRigidBodyVelocity(Rigidbody arg_robotRigidbody)
     {
@@ -358,7 +388,7 @@ public class RobotScript : MonoBehaviour
         }
         else
         {
-            //AnimationStateChecker(robotAnimStateEnum.Idle);
+            AnimationStateChecker(RobotAnimStateEnum.Idle);
             readyToShoot = RobotReload();
         }
     }
