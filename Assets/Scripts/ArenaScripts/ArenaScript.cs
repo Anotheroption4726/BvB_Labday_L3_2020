@@ -7,7 +7,6 @@ public class ArenaScript : MonoBehaviour
     private RobotScript playerRobotScript;
     private RobotScript enemyRobotScript;
     [SerializeField] private static GameObject[] bulletTable = { };
-    private static Weapon[] weaponTable = { new Weapon(1, 1, 4, 8, 4, 4, 2), new Weapon(2, 1, 2, 14, 8, 1, 4) };
 
     private void Awake()
     {
@@ -55,19 +54,6 @@ public class ArenaScript : MonoBehaviour
         return null;
     }
     */
-
-
-    private Weapon GetWeaponFromId(int arg_weaponId)
-    {
-        foreach (Weapon lp_weapon in weaponTable)
-        {
-            if (lp_weapon.GetId() == arg_weaponId)
-            {
-                return lp_weapon;
-            }
-        }
-        return null;
-    }
 
 
     //  Methode d'assignement de robot test

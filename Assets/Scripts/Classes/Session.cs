@@ -6,6 +6,7 @@ public static class Session
 	private static GameStateEnum gameState = GameStateEnum.GamePending;
 	private static bool muteAudio = false;
 	private static float timeScale = 1f;
+	private static Weapon[] weaponTable = { new Weapon(1, 1, 4, 8, 4, 4, 2), new Weapon(2, 1, 2, 14, 8, 1, 4) };
 
 
 	// Getters
@@ -54,5 +55,19 @@ public static class Session
 	public static void SetTimeScale(float arg_timeScale)
 	{
 		timeScale = arg_timeScale;
+	}
+
+
+	// Méthode de récupération d'arme
+	static public Weapon GetWeaponFromId(int arg_weaponId)
+	{
+		foreach (Weapon lp_weapon in weaponTable)
+		{
+			if (lp_weapon.GetId() == arg_weaponId)
+			{
+				return lp_weapon;
+			}
+		}
+		return null;
 	}
 }
