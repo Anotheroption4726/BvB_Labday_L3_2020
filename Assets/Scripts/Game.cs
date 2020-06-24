@@ -39,7 +39,7 @@ public static class Game
 
 	public static void SetCurentUser_Developper(User_Developper arg_userDevelopper)
 	{
-		curentUser = arg_userDevelopper);
+		curentUser = arg_userDevelopper;
 	}
 
 	public static void SetGameState(GameStateEnum arg_gameState)
