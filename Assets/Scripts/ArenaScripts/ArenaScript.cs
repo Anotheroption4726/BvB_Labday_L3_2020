@@ -17,11 +17,11 @@ public class ArenaScript : MonoBehaviour
 
     private void Update()
     {
-        if (Session.GetGameState().Equals(GameStateEnum.GamePending))
+        if (Game.GetGameState().Equals(GameStateEnum.GamePending))
         {
             if (playerRobotScript.GetRobotState().Equals(RobotStateEnum.Born) || enemyRobotScript.GetRobotState().Equals(RobotStateEnum.Born))
             {
-                if (Session.GetCurentUser() == null)
+                if (Game.GetCurentUser() == null)
                 {
                     SetTestRobot(playerRobotScript);
                     SetTestRobot(enemyRobotScript);
@@ -35,7 +35,7 @@ public class ArenaScript : MonoBehaviour
             {
                 playerRobotScript.SetEnemyRobotGameObject(enemyRobotGameObject);
                 enemyRobotScript.SetEnemyRobotGameObject(playerRobotGameObject);
-                Session.SetGameState(GameStateEnum.GameStarted);
+                Game.SetGameState(GameStateEnum.GameStarted);
             }
         }
     }

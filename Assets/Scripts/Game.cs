@@ -1,6 +1,6 @@
 ﻿using System;
 
-public static class Session
+public static class Game
 {
 	private static User curentUser;
 	private static GameStateEnum gameState = GameStateEnum.GamePending;

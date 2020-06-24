@@ -140,7 +140,7 @@ public class RobotScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Session.GetGameState().Equals(GameStateEnum.GameStarted))
+        if (Game.GetGameState().Equals(GameStateEnum.GameStarted))
         {
             if (robotRigidbody.velocity.magnitude > 10)
             {
