@@ -90,15 +90,12 @@ public class RobotAnimationsScript : MonoBehaviour
 		}
 
 		robotScript = GetComponentInParent<RobotScript>();
-		//	Debug.Log("RobotShoot inGameId: " + robotScript.GetInGameId());
 		weapon = robotScript.GetWeapon();
 		bullet = robotScript.GetBullet().transform;
 
 		var gameOb = (Transform)Instantiate(bullet, pos_side, Quaternion.LookRotation(-transform.forward));
 		
 		gameOb.gameObject.GetComponent<BulletScript_Main>().SetRobotInGameId(robotScript.GetInGameId());
-		//Debug.Log("BulletRobot inGameId: " + gameOb.gameObject.GetComponent<BulletScript_Main>().GetRobotInGameId());
-		//Debug.Log("Robot: " + robotScript.GetInGameId() + " / Bullet: " + gameOb.gameObject.GetComponent<BulletScript_Main>().GetRobotInGameId());
 		gameOb.GetComponent<Rigidbody>().AddForce(-transform.right * Convert.ToSingle(weapon.GetBulletSpeed()) * 200);
 
 		m_AudioSource.PlayOneShot(s_Fire);

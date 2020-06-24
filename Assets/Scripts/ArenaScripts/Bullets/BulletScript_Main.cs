@@ -29,7 +29,6 @@ public class BulletScript_Main : MonoBehaviour
 
             if (robotCollided.GetInGameId() != robotInGameId)
             {
-                Debug.Log("Collider id: " + robotCollided.GetInGameId() + " / Bullet " + robotInGameId + " detruite");
                 Destroy(gameObject);
             }
         }
