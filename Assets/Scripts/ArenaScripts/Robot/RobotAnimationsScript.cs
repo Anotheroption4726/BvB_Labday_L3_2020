@@ -13,7 +13,6 @@ public class RobotAnimationsScript : MonoBehaviour
 
 	public ParticleSystem[] p_jet;
 	private bool restartRes = true;
-	private float shellSpeed = 500;
 	private Vector3 pos_side;
 
 	public ParticleSystem p_hit, p_dead, p_smoke, p_fireL, p_fireSmokeL, p_fireR, p_fireSmokeR;    //Particle effect  
@@ -25,11 +24,9 @@ public class RobotAnimationsScript : MonoBehaviour
 	void Awake()
 	{
 		robotScript = GetComponentInParent<RobotScript>();
-		weapon = robotScript.GetWeapon();
-		bullet = robotScript.GetBullet().transform;
-
 		m_AudioSource = GetComponent<AudioSource>();
 	}
+
 
 	void f_hit() //hit
 	{
@@ -93,8 +90,11 @@ public class RobotAnimationsScript : MonoBehaviour
 			pos_side = Gun_EndL.transform.position;
 		}
 
-		var gameOb = (Transform)Instantiate(bullet, pos_side, Quaternion.LookRotation(-transform.forward));
+		weapon = robotScript.GetWeapon();
+		bullet = robotScript.GetBullet().transform;
 
+		var gameOb = (Transform)Instantiate(bullet, pos_side, Quaternion.LookRotation(-transform.forward));
+		
 		gameOb.gameObject.GetComponent<BulletScript_Main>().SetRobotInGameId(robotScript.GetInGameId());
 		gameOb.GetComponent<Rigidbody>().AddForce(-transform.right * Convert.ToSingle(weapon.GetBulletSpeed()) * 200);
 
