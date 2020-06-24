@@ -8,6 +8,6 @@ public class MenuToFightScript : MonoBehaviour
 {
     public void NavigationFight()
     {
-        SceneManager.LoadScene("FightScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("Arena", LoadSceneMode.Single);
     }
 }
