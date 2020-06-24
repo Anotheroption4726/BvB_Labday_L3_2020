@@ -12,7 +12,11 @@ public class RobotScript : MonoBehaviour
     private GameObject bullet;
     private RobotStateEnum robotState = RobotStateEnum.Born;
     private RobotAnimStateEnum robotAnimState = RobotAnimStateEnum.Idle;
+
+    //  Enemy Robot
     private GameObject enemyRobotGameObject;
+    private Robot enemyRobot;
+    private Weapon enemyWeapon;
 
     private float nextFire;
     private bool readyToShoot;
@@ -151,19 +155,28 @@ public class RobotScript : MonoBehaviour
         robotState = arg_robotState;
     }
 
-    public void SetEnemyRobotGameObject(GameObject arg_enemyRobot)
+    public void SetEnemyRobotGameObject(GameObject arg_enemyRobotGameObject)
     {
-        enemyRobotGameObject = arg_enemyRobot;
+        enemyRobotGameObject = arg_enemyRobotGameObject;
+    }
+
+    public void SetEnemyRobot(Robot arg_enemyRobot)
+    {
+        enemyRobot = arg_enemyRobot;
+    }
+
+    public void SetEnemyWeapon(Weapon arg_enemyWeapon)
+    {
+        enemyWeapon = arg_enemyWeapon;
     }
 
 
+    //  Methodes in-game
     private void Awake()
     {
-        //  Getting Robot components
         robotRigidbody = gameObject.GetComponent<Rigidbody>();
         animationController = GetRobotAnimationController();
     }
-
 
     private void FixedUpdate()
     {
@@ -196,9 +209,29 @@ public class RobotScript : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter(Collision arg_collision)
+    {
+        if (Game.GetGameState().Equals(GameStateEnum.GameStarted))
+        {
+            if (arg_collision.gameObject.tag == "BulletTag")
+            {
+                BulletScript_Main loc_bulletCollided;
+                loc_bulletCollided = arg_collision.gameObject.GetComponent<BulletScript_Main>();
+
+                if (loc_bulletCollided.GetRobotInGameId() != inGameId)
+                {
+                    animationController.Hit1();
+                    robot.SetCurentStatHp(robot.GetCurentStatHp() - enemyRobot.GetStatAttack() / 10 * enemyWeapon.GetDamageValue());
+                    Debug.Log(robot.GetCurentStatHp());
+                    //HUDController.updateHealthBar(healthDisplay, robot.curentStatHp, robot.statHp);
+                }
+            }
+        }
+    }
+
 
     //  Récupération du scricpt gérant les animations
-    RobotActionsScript GetRobotAnimationController()
+    private RobotActionsScript GetRobotAnimationController()
     {
         RobotActionsScript loc_animationController = new RobotActionsScript();
         Component[] loc_retrievedScripts;
@@ -215,7 +248,7 @@ public class RobotScript : MonoBehaviour
 
 
     // Fonction de management des Animations
-    void AnimationStateChecker(RobotAnimStateEnum arg_robotStateAnimAfter)
+    private void AnimationStateChecker(RobotAnimStateEnum arg_robotStateAnimAfter)
     {
         if (robotAnimState != arg_robotStateAnimAfter)
         {
@@ -379,7 +412,7 @@ public class RobotScript : MonoBehaviour
 
 
     //  Events d'attaque/tir
-    void RobotShoot()
+    private void RobotShoot()
     {
         if (readyToShoot)
         {
@@ -393,7 +426,7 @@ public class RobotScript : MonoBehaviour
         }
     }
 
-    public bool RobotReload()
+    private bool RobotReload()
     {
         nextFire -= Time.deltaTime;
         float loc_attackAggressivity = 1 + (Convert.ToSingle(robot.GetBehaviorAggressivity()) / 75);

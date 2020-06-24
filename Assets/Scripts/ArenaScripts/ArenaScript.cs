@@ -50,6 +50,10 @@ public class ArenaScript : MonoBehaviour
             {
                 playerRobotScript.SetEnemyRobotGameObject(enemyRobotGameObject);
                 enemyRobotScript.SetEnemyRobotGameObject(playerRobotGameObject);
+                playerRobotScript.SetEnemyRobot(enemyRobotScript.GetComponent<RobotScript>().GetRobot());
+                enemyRobotScript.SetEnemyRobot(playerRobotScript.GetComponent<RobotScript>().GetRobot());
+                playerRobotScript.SetEnemyWeapon(enemyRobotScript.GetComponent<RobotScript>().GetWeapon());
+                enemyRobotScript.SetEnemyWeapon(playerRobotScript.GetComponent<RobotScript>().GetWeapon());
                 Game.SetGameState(GameStateEnum.GameStarted);
             }
         }
