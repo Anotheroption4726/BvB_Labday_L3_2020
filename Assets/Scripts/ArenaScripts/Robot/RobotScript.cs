@@ -222,7 +222,6 @@ public class RobotScript : MonoBehaviour
                 {
                     animationController.Hit1();
                     robot.SetCurentStatHp(robot.GetCurentStatHp() - enemyRobot.GetStatAttack() / 10 * enemyWeapon.GetDamageValue());
-                    Debug.Log(robot.GetCurentStatHp());
                     //HUDController.updateHealthBar(healthDisplay, robot.curentStatHp, robot.statHp);
                 }
             }
