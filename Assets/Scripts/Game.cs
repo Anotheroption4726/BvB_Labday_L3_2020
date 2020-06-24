@@ -32,14 +32,14 @@ public static class Game
 
 
 	// Setters
-	public static void SetCurentUser_Player(int arg_userId, AccountTypeEnum arg_accountType, string arg_token, Robot_Player arg_robotPlayer, Robot_AlgoGen arg_robotEnemy)
+	public static void SetCurentUser_Player(User_Player arg_userPlayer)
 	{
-		curentUser = new User_Player(arg_userId, arg_accountType, arg_token, arg_robotPlayer, arg_robotEnemy);
+		curentUser = arg_userPlayer;
 	}
 
-	public static void SetCurentUser_Developper(int arg_userId, AccountTypeEnum arg_accountType, string arg_token, Robot_AlgoGen[] arg_robotGenerationTable)
+	public static void SetCurentUser_Developper(User_Developper arg_userDevelopper)
 	{
-		curentUser = new User_Developper(arg_userId, arg_accountType, arg_token, arg_robotGenerationTable);
+		curentUser = arg_userDevelopper);
 	}
 
 	public static void SetGameState(GameStateEnum arg_gameState)
