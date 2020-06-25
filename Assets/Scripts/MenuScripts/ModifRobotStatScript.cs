@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class ModifRobotStatScript : MonoBehaviour
 {
-    public Text pseudo, attack, life, speed; //on assigne les variables aux champs texte
-    public Text pointsATK, pointsHP, pointsSPEED; //valeurs modifiactions de stats
-    public Button atkMoins, atkPlus, hpMoins, hpPlus, speedMoins, speedPlus; //boutons pour modifier les stats
+    public Text pseudo, attack, life, speed, agility, aggressivity; //on assigne les variables aux champs texte
+    public Text pointsATK, pointsHP, pointsSPEED, pointsAGI, pointsAGGR; //valeurs modifiactions de stats
+    public Button atkMoins, atkPlus, hpMoins, hpPlus, speedMoins, speedPlus, agiMoins, agiPlus, aggrMoins, aggrPlus; //boutons pour modifier les stats
     public Button precedentWeapon, nextWeapon; //boutons choix d'arme
     public Text weaponName; //nom de l'arme
 
@@ -21,12 +21,17 @@ public class ModifRobotStatScript : MonoBehaviour
         attack.text = (loc_player.GetUserRobot().GetStatAttack()).ToString();
         life.text = (loc_player.GetUserRobot().GetStatHp()).ToString();
         speed.text = (loc_player.GetUserRobot().GetStatSpeed()).ToString();
+        agility.text = (loc_player.GetUserRobot().GetBehaviorAgility()).ToString();
+        aggressivity.text = (loc_player.GetUserRobot().GetBehaviorAggressivity()).ToString();
+
 
         weaponName.text = Game.GetWeaponFromId(loc_player.GetUserRobot().GetWeaponId()).GetName();
 
         pointsATK.text = attack.text;
         pointsHP.text = life.text;
         pointsSPEED.text = speed.text;
+        pointsAGI.text = agility.text;
+        pointsAGGR.text = aggressivity.text;
 
         atkPlus.onClick.AddListener(AttackPlus);
         atkMoins.onClick.AddListener(AttackMoins);
@@ -34,6 +39,11 @@ public class ModifRobotStatScript : MonoBehaviour
         hpPlus.onClick.AddListener(LifePlus);
         speedPlus.onClick.AddListener(SpeedPlus);
         speedMoins.onClick.AddListener(SpeedMoins);
+        agiPlus.onClick.AddListener(AgilityPlus);
+        agiMoins.onClick.AddListener(AgilityMoins);
+        aggrPlus.onClick.AddListener(AggressivityPlus);
+        aggrMoins.onClick.AddListener(AggressivityMoins);
+
         precedentWeapon.onClick.AddListener(PreWeapon);
         nextWeapon.onClick.AddListener(NextWeapon);
 
@@ -108,6 +118,46 @@ public class ModifRobotStatScript : MonoBehaviour
             loc_player.GetUserRobot().SetStatSpeed(loc_player.GetUserRobot().GetStatSpeed() - 10);
             speed.text = (loc_player.GetUserRobot().GetStatSpeed()).ToString();
             pointsSPEED.text = speed.text;
+        }
+    }
+
+    public void AgilityPlus()
+    {
+        if (loc_player.GetUserRobot().GetBehaviorAgility() < 100)
+        {
+            loc_player.GetUserRobot().SetBehaviorAgility(loc_player.GetUserRobot().GetBehaviorAgility() + 10);
+            agility.text = (loc_player.GetUserRobot().GetBehaviorAgility()).ToString();
+            pointsAGI.text = agility.text;
+        }
+    }
+
+    public void AgilityMoins()
+    {
+        if (loc_player.GetUserRobot().GetBehaviorAgility() > 0)
+        {
+            loc_player.GetUserRobot().SetBehaviorAgility(loc_player.GetUserRobot().GetBehaviorAgility() - 10);
+            agility.text = (loc_player.GetUserRobot().GetBehaviorAgility()).ToString();
+            pointsAGI.text = agility.text;
+        }
+    }
+
+    public void AggressivityPlus()
+    {
+        if (loc_player.GetUserRobot().GetBehaviorAggressivity() < 100)
+        {
+            loc_player.GetUserRobot().SetBehaviorAggressivity(loc_player.GetUserRobot().GetBehaviorAggressivity() + 10);
+            aggressivity.text = (loc_player.GetUserRobot().GetBehaviorAggressivity()).ToString();
+            pointsAGGR.text = aggressivity.text;
+        }
+    }
+
+    public void AggressivityMoins()
+    {
+        if (loc_player.GetUserRobot().GetBehaviorAggressivity() > 0)
+        {
+            loc_player.GetUserRobot().SetBehaviorAggressivity(loc_player.GetUserRobot().GetBehaviorAggressivity() - 10);
+            aggressivity.text = (loc_player.GetUserRobot().GetBehaviorAggressivity()).ToString();
+            pointsAGGR.text = aggressivity.text;
         }
     }
 
