@@ -70,4 +70,13 @@ public static class Game
 		}
 		return null;
 	}
+
+
+	//	Méthode de déconnexion
+	static public void ClearCurentSession()
+	{
+		curentUser = null;
+		muteAudio = false;
+		timeScale = 1f;
+	}
 }
