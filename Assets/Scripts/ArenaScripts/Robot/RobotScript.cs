@@ -231,6 +231,14 @@ public class RobotScript : MonoBehaviour
                 robotState = RobotStateEnum.Dead;
             }
         }
+
+        if (Game.GetGameState().Equals(GameStateEnum.GameFinished))
+        {
+            if (enemyRobotGameObject.GetComponent<RobotScript>().GetRobotState().Equals(RobotStateEnum.Dead))
+            {
+                animationController.Idle1();
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision arg_collision)

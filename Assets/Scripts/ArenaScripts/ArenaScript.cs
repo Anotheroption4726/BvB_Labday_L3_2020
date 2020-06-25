@@ -41,6 +41,7 @@ public class ArenaScript : MonoBehaviour
 
     private void Update()
     {
+        // Game start
         if (Game.GetGameState().Equals(GameStateEnum.GamePending))
         {
             if (playerRobotScript.GetRobotState().Equals(RobotStateEnum.Born) || enemyRobotScript.GetRobotState().Equals(RobotStateEnum.Born))
@@ -81,6 +82,22 @@ public class ArenaScript : MonoBehaviour
                 playerRobotScript.SetEnemyWeapon(enemyRobotScript.GetComponent<RobotScript>().GetWeapon());
                 enemyRobotScript.SetEnemyWeapon(playerRobotScript.GetComponent<RobotScript>().GetWeapon());
                 Game.SetGameState(GameStateEnum.GameStarted);
+            }
+        }
+
+        //  Game end
+        if (Game.GetGameState().Equals(GameStateEnum.GameStarted))
+        {
+            if (playerRobotScript.GetRobotState() == RobotStateEnum.Dead || enemyRobotScript.GetRobotState() == RobotStateEnum.Dead)
+            {
+                GameObject[] loc_bulletsToDestroy = GameObject.FindGameObjectsWithTag("BulletTag");
+
+                foreach (GameObject bullet in loc_bulletsToDestroy)
+                {
+                    Destroy(bullet);
+                }
+
+                Game.SetGameState(GameStateEnum.GameFinished);
             }
         }
     }
