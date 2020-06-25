@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class ArenaScript : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class ArenaScript : MonoBehaviour
     private RobotScript playerRobotScript;
     private RobotScript enemyRobotScript;
 
+    //  HUD
+    [SerializeField] private Image playerRobotHealthDisplay;
+    [SerializeField] private Image enemyRobotHealthDisplay;
+    [SerializeField] private Text playerRobotNameDisplay;
+    [SerializeField] private Text enemyRobotNameDisplay;
+
     //  Bullets
     [SerializeField] private GameObject[] bulletTable = { };
 
@@ -22,6 +29,11 @@ public class ArenaScript : MonoBehaviour
 
         if (muteAudio)
         {
+            Game.SetMuteAudio(true);
+        }
+
+        if (Game.GetMuteAudio())
+        {
             audioManager.enabled = false;
         }
     }
@@ -29,6 +41,7 @@ public class ArenaScript : MonoBehaviour
 
     private void Update()
     {
+        // Game start
         if (Game.GetGameState().Equals(GameStateEnum.GamePending))
         {
             if (playerRobotScript.GetRobotState().Equals(RobotStateEnum.Born) || enemyRobotScript.GetRobotState().Equals(RobotStateEnum.Born))
@@ -36,21 +49,55 @@ public class ArenaScript : MonoBehaviour
                 if (Game.GetCurentUser() == null)
                 {
                     SetTestRobot(0, playerRobotScript);
-                    SetTestRobot(1, enemyRobotScript);
-
-                    //Debug.Log("Robot 0 inGameId: " + playerRobotScript.GetInGameId());
-                    //Debug.Log("Robot 1 inGameId: " + enemyRobotScript.GetInGameId());
-
-                    playerRobotScript.SetRobotState(RobotStateEnum.Ready);
-                    enemyRobotScript.SetRobotState(RobotStateEnum.Ready);
+                    SetTestRobot(1, enemyRobotScript);        
                 }
+                else
+                {
+                    if (Game.GetCurentUser().GetAccountType() == AccountTypeEnum.Player)
+                    {
+
+                    }
+
+                    if (Game.GetCurentUser().GetAccountType() == AccountTypeEnum.Developper)
+                    {
+
+                    }
+                }
+
+                playerRobotScript.SetHealthDisplay(playerRobotHealthDisplay);
+                enemyRobotScript.SetHealthDisplay(enemyRobotHealthDisplay);
+                playerRobotScript.SetNameDisplay(playerRobotNameDisplay);
+                enemyRobotScript.SetNameDisplay(enemyRobotNameDisplay);
+
+                playerRobotScript.SetRobotState(RobotStateEnum.Ready);
+                enemyRobotScript.SetRobotState(RobotStateEnum.Ready);
             }
 
             if (playerRobotScript.GetRobotState().Equals(RobotStateEnum.Ready) && enemyRobotScript.GetRobotState().Equals(RobotStateEnum.Ready))
             {
                 playerRobotScript.SetEnemyRobotGameObject(enemyRobotGameObject);
                 enemyRobotScript.SetEnemyRobotGameObject(playerRobotGameObject);
+                playerRobotScript.SetEnemyRobot(enemyRobotScript.GetComponent<RobotScript>().GetRobot());
+                enemyRobotScript.SetEnemyRobot(playerRobotScript.GetComponent<RobotScript>().GetRobot());
+                playerRobotScript.SetEnemyWeapon(enemyRobotScript.GetComponent<RobotScript>().GetWeapon());
+                enemyRobotScript.SetEnemyWeapon(playerRobotScript.GetComponent<RobotScript>().GetWeapon());
                 Game.SetGameState(GameStateEnum.GameStarted);
+            }
+        }
+
+        //  Game end
+        if (Game.GetGameState().Equals(GameStateEnum.GameStarted))
+        {
+            if (playerRobotScript.GetRobotState() == RobotStateEnum.Dead || enemyRobotScript.GetRobotState() == RobotStateEnum.Dead)
+            {
+                GameObject[] loc_bulletsToDestroy = GameObject.FindGameObjectsWithTag("BulletTag");
+
+                foreach (GameObject bullet in loc_bulletsToDestroy)
+                {
+                    Destroy(bullet);
+                }
+
+                Game.SetGameState(GameStateEnum.GameFinished);
             }
         }
     }

@@ -2,24 +2,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RobotScript : MonoBehaviour
 {
-    //  Paramaters
+    //  Robot Paramaters
     private int inGameId;
     private Robot robot;
     private Weapon weapon;
     private GameObject bullet;
+
+    //  Enemy Robot
+    private GameObject enemyRobotGameObject;
+    private Robot enemyRobot;
+    private Weapon enemyWeapon;
+
+    //  In game values and states
     private RobotStateEnum robotState = RobotStateEnum.Born;
     private RobotAnimStateEnum robotAnimState = RobotAnimStateEnum.Idle;
-    private GameObject enemyRobotGameObject;
-
     private float nextFire;
     private bool readyToShoot;
 
     //  Components
     private Rigidbody robotRigidbody;
     private RobotActionsScript animationController;
+
+    //  Robot HUD
+    private Image healthDisplay;
+    private Text nameDisplay;
 
     //  Test Parameters
     [SerializeField] private int testStatAttack;
@@ -151,19 +161,38 @@ public class RobotScript : MonoBehaviour
         robotState = arg_robotState;
     }
 
-    public void SetEnemyRobotGameObject(GameObject arg_enemyRobot)
+    public void SetEnemyRobotGameObject(GameObject arg_enemyRobotGameObject)
     {
-        enemyRobotGameObject = arg_enemyRobot;
+        enemyRobotGameObject = arg_enemyRobotGameObject;
+    }
+
+    public void SetEnemyRobot(Robot arg_enemyRobot)
+    {
+        enemyRobot = arg_enemyRobot;
+    }
+
+    public void SetEnemyWeapon(Weapon arg_enemyWeapon)
+    {
+        enemyWeapon = arg_enemyWeapon;
+    }
+
+    public void SetHealthDisplay(Image arg_healthDisplay)
+    {
+        healthDisplay = arg_healthDisplay;
+    }
+
+    public void SetNameDisplay(Text arg_nameDisplay)
+    {
+        nameDisplay = arg_nameDisplay;
     }
 
 
+    //  Methodes in-game
     private void Awake()
     {
-        //  Getting Robot components
         robotRigidbody = gameObject.GetComponent<Rigidbody>();
         animationController = GetRobotAnimationController();
     }
-
 
     private void FixedUpdate()
     {
@@ -193,12 +222,55 @@ public class RobotScript : MonoBehaviour
                     RobotShoot();
                 }
             }
+
+            if (robot.GetCurentStatHp() <= 0)
+            {
+                AnimationStateChecker(RobotAnimStateEnum.Dead);
+                robotRigidbody.isKinematic = true;
+                enemyRobotGameObject.GetComponent<Rigidbody>().isKinematic = true;
+                robotState = RobotStateEnum.Dead;
+            }
+        }
+
+        if (Game.GetGameState().Equals(GameStateEnum.GameFinished))
+        {
+            if (enemyRobotGameObject.GetComponent<RobotScript>().GetRobotState().Equals(RobotStateEnum.Dead))
+            {
+                animationController.Idle1();
+            }
+        }
+    }
+
+    private void OnCollisionEnter(Collision arg_collision)
+    {
+        if (Game.GetGameState().Equals(GameStateEnum.GameStarted))
+        {
+            if (arg_collision.gameObject.tag == "BulletTag")
+            {
+                BulletScript_Main loc_bulletCollided;
+                loc_bulletCollided = arg_collision.gameObject.GetComponent<BulletScript_Main>();
+
+                if (loc_bulletCollided.GetRobotInGameId() != inGameId)
+                {
+                    animationController.Hit1();
+                    robot.SetCurentStatHp(robot.GetCurentStatHp() - enemyRobot.GetStatAttack() / 10 * enemyWeapon.GetDamageValue());
+                    UpdateHealthBar(healthDisplay, robot.GetCurentStatHp(), robot.GetStatHp());
+                }
+            }
         }
     }
 
 
+    // Mise à jour de la Healthbar
+    private void UpdateHealthBar(Image arg_robotHealthBar, int arg_robotCurentStatHp, int robotStatHp)
+    {
+        float loc_healthBarFillValue = (float)arg_robotCurentStatHp / (float)robotStatHp;
+        arg_robotHealthBar.fillAmount = loc_healthBarFillValue;
+    }
+
+
     //  Récupération du scricpt gérant les animations
-    RobotActionsScript GetRobotAnimationController()
+    private RobotActionsScript GetRobotAnimationController()
     {
         RobotActionsScript loc_animationController = new RobotActionsScript();
         Component[] loc_retrievedScripts;
@@ -211,6 +283,36 @@ public class RobotScript : MonoBehaviour
         }
 
         return loc_animationController;
+    }
+
+
+    // Fonction de management des Animations
+    private void AnimationStateChecker(RobotAnimStateEnum arg_robotStateAnimAfter)
+    {
+        if (robotAnimState != arg_robotStateAnimAfter)
+        {
+            if (arg_robotStateAnimAfter == RobotAnimStateEnum.Idle)
+            {
+                animationController.Idle1();
+            }
+
+            if (arg_robotStateAnimAfter == RobotAnimStateEnum.DodgeRight)
+            {
+                animationController.StrafeRight();
+            }
+
+            if (arg_robotStateAnimAfter == RobotAnimStateEnum.DodgeLeft)
+            {
+                animationController.StrafeLeft();
+            }
+
+            if (arg_robotStateAnimAfter == RobotAnimStateEnum.Dead)
+            {
+                animationController.Dead3();
+            }
+
+            robotAnimState = arg_robotStateAnimAfter;
+        }
     }
 
 
@@ -349,7 +451,7 @@ public class RobotScript : MonoBehaviour
 
 
     //  Events d'attaque/tir
-    void RobotShoot()
+    private void RobotShoot()
     {
         if (readyToShoot)
         {
@@ -358,12 +460,12 @@ public class RobotScript : MonoBehaviour
         }
         else
         {
-            //AnimationStateChecker(robotAnimStateEnum.Idle);
+            AnimationStateChecker(RobotAnimStateEnum.Idle);
             readyToShoot = RobotReload();
         }
     }
 
-    public bool RobotReload()
+    private bool RobotReload()
     {
         nextFire -= Time.deltaTime;
         float loc_attackAggressivity = 1 + (Convert.ToSingle(robot.GetBehaviorAggressivity()) / 75);
