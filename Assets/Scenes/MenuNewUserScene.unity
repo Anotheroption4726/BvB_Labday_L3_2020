@@ -152,7 +152,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1485121053}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 308516535}
   - component: {fileID: 308516534}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: InputPassword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -366,7 +366,7 @@ RectTransform:
   - {fileID: 687345817}
   - {fileID: 1040811779}
   m_Father: {fileID: 1485121053}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -503,7 +503,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1485121053}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 422101261}
   - component: {fileID: 422101260}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: InputLogin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -584,7 +584,7 @@ RectTransform:
   - {fileID: 1421880506}
   - {fileID: 993564079}
   m_Father: {fileID: 1485121053}
-  m_RootOrder: 2
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1108,7 +1108,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1485121053}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1275,7 +1275,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: E-mail
+  m_Text: Login
 --- !u!222 &1421880508
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1297,7 +1297,7 @@ GameObject:
   - component: {fileID: 1423457052}
   - component: {fileID: 1423457051}
   m_Layer: 5
-  m_Name: InputField (1)
+  m_Name: InputVerifPassword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1317,7 +1317,7 @@ RectTransform:
   - {fileID: 2095272808}
   - {fileID: 517642719}
   m_Father: {fileID: 1485121053}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1437,6 +1437,7 @@ GameObject:
   - component: {fileID: 1485121051}
   - component: {fileID: 1485121050}
   - component: {fileID: 1485121054}
+  - component: {fileID: 1485121055}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1517,12 +1518,12 @@ RectTransform:
   m_Children:
   - {fileID: 728564263}
   - {fileID: 2084918052}
-  - {fileID: 422101259}
   - {fileID: 308516533}
   - {fileID: 127789476}
   - {fileID: 1423457050}
   - {fileID: 406653727}
   - {fileID: 1041304398}
+  - {fileID: 422101259}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1543,6 +1544,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a475ac0ecd684650959b81bd891888f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1485121055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485121049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338f155a0c6384102a54a731e0bfe109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loginText: {fileID: 422101260}
+  paswwordText: {fileID: 308516534}
+  verifPasswordText: {fileID: 1423457051}
+  submit: {fileID: 127789477}
 --- !u!1 &2024838188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1844,7 +1861,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Retaper password
+  m_Text: Re-type password
 --- !u!222 &2095272810
 CanvasRenderer:
   m_ObjectHideFlags: 0
