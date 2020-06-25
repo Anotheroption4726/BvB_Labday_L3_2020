@@ -1734,7 +1734,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2016661444}
-        m_MethodName: deconnexion
+        m_MethodName: Deconnexion
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
