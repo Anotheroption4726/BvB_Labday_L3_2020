@@ -14,6 +14,7 @@ public class RobotScript : MonoBehaviour
 
     //  Enemy Robot
     private GameObject enemyRobotGameObject;
+    private RobotScript enemyRobotScript;
     private Robot enemyRobot;
     private Weapon enemyWeapon;
 
@@ -166,6 +167,11 @@ public class RobotScript : MonoBehaviour
         enemyRobotGameObject = arg_enemyRobotGameObject;
     }
 
+    public void SetEnemyRobotScript(RobotScript arg_enemyRobotScript)
+    {
+        enemyRobotScript = arg_enemyRobotScript;
+    }
+
     public void SetEnemyRobot(Robot arg_enemyRobot)
     {
         enemyRobot = arg_enemyRobot;
@@ -234,7 +240,7 @@ public class RobotScript : MonoBehaviour
 
         if (Game.GetGameState().Equals(GameStateEnum.GameFinished))
         {
-            if (enemyRobotGameObject.GetComponent<RobotScript>().GetRobotState().Equals(RobotStateEnum.Dead))
+            if (enemyRobotScript.GetRobotState().Equals(RobotStateEnum.Dead))
             {
                 animationController.Idle1();
             }
