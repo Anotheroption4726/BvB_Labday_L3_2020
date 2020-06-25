@@ -2,28 +2,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RobotScript : MonoBehaviour
 {
-    //  Paramaters
+    //  Robot Paramaters
     private int inGameId;
     private Robot robot;
     private Weapon weapon;
     private GameObject bullet;
-    private RobotStateEnum robotState = RobotStateEnum.Born;
-    private RobotAnimStateEnum robotAnimState = RobotAnimStateEnum.Idle;
 
     //  Enemy Robot
     private GameObject enemyRobotGameObject;
     private Robot enemyRobot;
     private Weapon enemyWeapon;
 
+    //  In game values and states
+    private RobotStateEnum robotState = RobotStateEnum.Born;
+    private RobotAnimStateEnum robotAnimState = RobotAnimStateEnum.Idle;
     private float nextFire;
     private bool readyToShoot;
 
     //  Components
     private Rigidbody robotRigidbody;
     private RobotActionsScript animationController;
+
+    //  Robot HUD
+    private Image healthDisplay;
+    private Text nameDisplay;
 
     //  Test Parameters
     [SerializeField] private int testStatAttack;
@@ -170,6 +176,16 @@ public class RobotScript : MonoBehaviour
         enemyWeapon = arg_enemyWeapon;
     }
 
+    public void SetHealthDisplay(Image arg_healthDisplay)
+    {
+        healthDisplay = arg_healthDisplay;
+    }
+
+    public void SetNameDisplay(Text arg_nameDisplay)
+    {
+        nameDisplay = arg_nameDisplay;
+    }
+
 
     //  Methodes in-game
     private void Awake()
@@ -209,7 +225,7 @@ public class RobotScript : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision arg_collision)
+    private void OnCollisionEnter(Collision arg_collision)
     {
         if (Game.GetGameState().Equals(GameStateEnum.GameStarted))
         {
@@ -222,10 +238,18 @@ public class RobotScript : MonoBehaviour
                 {
                     animationController.Hit1();
                     robot.SetCurentStatHp(robot.GetCurentStatHp() - enemyRobot.GetStatAttack() / 10 * enemyWeapon.GetDamageValue());
-                    //HUDController.updateHealthBar(healthDisplay, robot.curentStatHp, robot.statHp);
+                    UpdateHealthBar(healthDisplay, robot.GetCurentStatHp(), robot.GetStatHp());
                 }
             }
         }
+    }
+
+
+    // Mise à jour de la Healthbar
+    private void UpdateHealthBar(Image arg_robotHealthBar, int arg_robotCurentStatHp, int robotStatHp)
+    {
+        float loc_healthBarFillValue = (float)arg_robotCurentStatHp / (float)robotStatHp;
+        arg_robotHealthBar.fillAmount = loc_healthBarFillValue;
     }
 
 
