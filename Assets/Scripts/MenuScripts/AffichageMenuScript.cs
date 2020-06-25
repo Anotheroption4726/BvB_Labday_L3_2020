@@ -42,7 +42,7 @@ public class AffichageMenuScript : MonoBehaviour
         }
     }
 
-    public void deconnexion()
+    public void Deconnexion()
     {
         Game.ClearCurentSession();
         SceneManager.LoadScene("MenuLoginScene", LoadSceneMode.Single);

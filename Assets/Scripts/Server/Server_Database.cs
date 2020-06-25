@@ -203,6 +203,11 @@ public static class Server_Database
 		return new Robot_Player(arg_serverRobot.GetWeaponId(), arg_serverRobot.GetStatAttack(), arg_serverRobot.GetStatHp(), arg_serverRobot.GetStatSpeed(), arg_serverRobot.GetBehaviorProximity(), arg_serverRobot.GetbehaviorAgility(), arg_serverRobot.GetBehaviorAggressivity());
 	}
 
+	public static Server_Robot_Player ConvertRobot_PlayerToServer(Robot_Player arg_robotPlayer)
+	{
+		return new Server_Robot_Player(Game.GetCurentUser().GetId(), arg_robotPlayer.GetWeaponId(), arg_robotPlayer.GetStatAttack(), arg_robotPlayer.GetStatHp(), arg_robotPlayer.GetStatSpeed(), arg_robotPlayer.GetBehaviorProximity(), arg_robotPlayer.GetBehaviorAgility(), arg_robotPlayer.GetBehaviorAggressivity());
+	}
+
 	public static Robot_AlgoGen CreateRobot_AlgoGenFromServer(Server_Robot_AlgoGen arg_serverRobot)
 	{
 		return new Robot_AlgoGen(arg_serverRobot.GetAlgoGenId(), arg_serverRobot.GetName(), arg_serverRobot.GetWins(), arg_serverRobot.GetLosses(), arg_serverRobot.GetWeaponId(), arg_serverRobot.GetStatAttack(), arg_serverRobot.GetStatHp(), arg_serverRobot.GetStatSpeed(), arg_serverRobot.GetBehaviorProximity(), arg_serverRobot.GetbehaviorAgility(), arg_serverRobot.GetBehaviorAggressivity());
