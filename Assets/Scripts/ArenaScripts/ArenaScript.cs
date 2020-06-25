@@ -50,15 +50,17 @@ public class ArenaScript : MonoBehaviour
                     SetTestRobot(0, playerRobotScript);
                     SetTestRobot(1, enemyRobotScript);        
                 }
-
-                if (Game.GetCurentUser().GetAccountType() == AccountTypeEnum.Player)
+                else
                 {
-                    
-                }
+                    if (Game.GetCurentUser().GetAccountType() == AccountTypeEnum.Player)
+                    {
 
-                if (Game.GetCurentUser().GetAccountType() == AccountTypeEnum.Developper)
-                {
+                    }
 
+                    if (Game.GetCurentUser().GetAccountType() == AccountTypeEnum.Developper)
+                    {
+
+                    }
                 }
 
                 playerRobotScript.SetHealthDisplay(playerRobotHealthDisplay);
