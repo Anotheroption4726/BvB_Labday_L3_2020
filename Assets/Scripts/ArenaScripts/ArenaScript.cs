@@ -163,7 +163,6 @@ public class ArenaScript : MonoBehaviour
 
     private void SetRegularGameRobot(int arg_inGameId, bool arg_isPlayerRobot, RobotScript arg_robotScript, User_Player arg_userPlayer)
     {
-        //User_Player arg_userPlayer = (User_Player)Game.GetCurentUser();
         arg_robotScript.SetInGameId(arg_inGameId);
 
         if (arg_isPlayerRobot)
