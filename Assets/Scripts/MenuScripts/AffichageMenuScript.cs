@@ -39,4 +39,10 @@ public class AffichageMenuScript : MonoBehaviour
         }
     }
 
+    public void deconnexion()
+    {
+        //Game.SetCurentUser_Player = null
+        SceneManager.LoadScene("MenuLoginScene", LoadSceneMode.Single);
+    }
+
 }
