@@ -222,6 +222,14 @@ public class RobotScript : MonoBehaviour
                     RobotShoot();
                 }
             }
+
+            if (robot.GetCurentStatHp() <= 0)
+            {
+                AnimationStateChecker(RobotAnimStateEnum.Dead);
+                robotRigidbody.isKinematic = true;
+                enemyRobotGameObject.GetComponent<Rigidbody>().isKinematic = true;
+                robotState = RobotStateEnum.Dead;
+            }
         }
     }
 
