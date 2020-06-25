@@ -77,6 +77,8 @@ public class ArenaScript : MonoBehaviour
             {
                 playerRobotScript.SetEnemyRobotGameObject(enemyRobotGameObject);
                 enemyRobotScript.SetEnemyRobotGameObject(playerRobotGameObject);
+                playerRobotScript.SetEnemyRobotScript(enemyRobotGameObject.GetComponent<RobotScript>());
+                enemyRobotScript.SetEnemyRobotScript(playerRobotGameObject.GetComponent<RobotScript>());
                 playerRobotScript.SetEnemyRobot(enemyRobotScript.GetComponent<RobotScript>().GetRobot());
                 enemyRobotScript.SetEnemyRobot(playerRobotScript.GetComponent<RobotScript>().GetRobot());
                 playerRobotScript.SetEnemyWeapon(enemyRobotScript.GetComponent<RobotScript>().GetWeapon());
