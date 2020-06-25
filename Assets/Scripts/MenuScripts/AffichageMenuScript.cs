@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class AffichageMenuScript : MonoBehaviour
 {
-    public Text pseudo , attack, life, speed, nbWins, nbGames; //on assigne les variables aux champs texte
+    public Text pseudo , attack, life, speed, agility, aggressivity, nbWins, nbGames; //on assigne les variables aux champs texte
     public Button muteBtn;
 
     void Awake()
@@ -20,6 +20,9 @@ public class AffichageMenuScript : MonoBehaviour
         attack.text = (loc_player.GetUserRobot().GetStatAttack()).ToString();
         life.text = (loc_player.GetUserRobot().GetStatHp()).ToString();
         speed.text = (loc_player.GetUserRobot().GetStatSpeed()).ToString();
+        agility.text = (loc_player.GetUserRobot().GetBehaviorAgility()).ToString();
+        aggressivity.text = (loc_player.GetUserRobot().GetBehaviorAggressivity()).ToString();
+
         nbWins.text = (Server_Database.GetServer_UserWinsFromUserId(Game.GetCurentUser().GetId())).ToString();
         nbGames.text = games.ToString();
     }
