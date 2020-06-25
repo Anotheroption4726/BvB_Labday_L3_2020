@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using UnityEngine;
 
 public static class Server_Database
 {
@@ -8,7 +6,7 @@ public static class Server_Database
 	//	email
 	//	password
 	//	accountType
-	private static Server_User[] usersTable = { new Server_User(1, "testemail@bvb.com", "testpassword", AccountTypeEnum.Player), new Server_User(2, "dev", "dev", AccountTypeEnum.Developper), new Server_User(3, "bvb", "bvb", AccountTypeEnum.Player) };
+	private static Server_User[] usersTable = { new Server_User(1, "Player 1", "testpassword", AccountTypeEnum.Player), new Server_User(2, "Developper 1", "dev", AccountTypeEnum.Developper), new Server_User(3, "bvb", "bvb", AccountTypeEnum.Player) };
 
 	//	userId
 	//	weaponId
@@ -28,7 +26,7 @@ public static class Server_Database
 	//	behaviorProximity
 	//	behaviorAgility
 	//	behaviorAggressivity
-	private static Server_Robot_AlgoGen[] algoGenRobotsTable = { new Server_Robot_AlgoGen(1, 2, 10, 70, 20, 0, 20, 10) };
+	private static Server_Robot_AlgoGen[] algoGenRobotsTable = { new Server_Robot_AlgoGen(1, "HAL 9000", 2, 10, 70, 20, 0, 20, 10) };
 
 
 	//	Methodes table User
@@ -207,18 +205,20 @@ public static class Server_Database
 
 	public static Robot_AlgoGen CreateRobot_AlgoGenFromServer(Server_Robot_AlgoGen arg_serverRobot)
 	{
-		return new Robot_AlgoGen(arg_serverRobot.GetAlgoGenId(), arg_serverRobot.GetWins(), arg_serverRobot.GetLosses(), arg_serverRobot.GetWeaponId(), arg_serverRobot.GetStatAttack(), arg_serverRobot.GetStatHp(), arg_serverRobot.GetStatSpeed(), arg_serverRobot.GetBehaviorProximity(), arg_serverRobot.GetbehaviorAgility(), arg_serverRobot.GetBehaviorAggressivity());
+		return new Robot_AlgoGen(arg_serverRobot.GetAlgoGenId(), arg_serverRobot.GetName(), arg_serverRobot.GetWins(), arg_serverRobot.GetLosses(), arg_serverRobot.GetWeaponId(), arg_serverRobot.GetStatAttack(), arg_serverRobot.GetStatHp(), arg_serverRobot.GetStatSpeed(), arg_serverRobot.GetBehaviorProximity(), arg_serverRobot.GetbehaviorAgility(), arg_serverRobot.GetBehaviorAggressivity());
 	}
 
 	public static User_Player CreateUser_PlayerFromServer(Server_User arg_serverUser)
 	{
 		int loc_randomRobot_AlgoGenId = 1;
-		return new User_Player(arg_serverUser.GetId(), arg_serverUser.GetAccountType(), arg_serverUser.GetToken(), CreateRobot_PlayerFromServer(GetServer_Robot_PlayerFromUserId(arg_serverUser.GetId())), CreateRobot_AlgoGenFromServer(GetServer_Robot_AlgoGenFromId(loc_randomRobot_AlgoGenId)));
+		return new User_Player(arg_serverUser.GetId(), arg_serverUser.GetAccountType(), arg_serverUser.GetEmail(), arg_serverUser.GetToken(), CreateRobot_PlayerFromServer(GetServer_Robot_PlayerFromUserId(arg_serverUser.GetId())), CreateRobot_AlgoGenFromServer(GetServer_Robot_AlgoGenFromId(loc_randomRobot_AlgoGenId)));
+		//	ATTENTION, POUR CETTE VERSION L'EMAIL EST UTILISE POUR LE CHAMP NAME
 	}
 
 	public static User_Developper CreateUser_DevelopperFromServer(Server_User arg_serverUser)
 	{
 		Robot_AlgoGen[] loc_algoGenSessionTable = { };
-		return new User_Developper(arg_serverUser.GetId(), arg_serverUser.GetAccountType(), arg_serverUser.GetToken(), loc_algoGenSessionTable);
+		return new User_Developper(arg_serverUser.GetId(), arg_serverUser.GetAccountType(), arg_serverUser.GetEmail(), arg_serverUser.GetToken(), loc_algoGenSessionTable);
+		//	ATTENTION, POUR CETTE VERSION L'EMAIL EST UTILISE POUR LE CHAMP NAME
 	}
 }

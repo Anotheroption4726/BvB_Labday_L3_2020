@@ -4,6 +4,7 @@ public abstract class User
 {
 	private int id;
 	private AccountTypeEnum accountType;
+	private string name;
 	private String token;
 
 
@@ -16,6 +17,11 @@ public abstract class User
 	public AccountTypeEnum GetAccountType()
 	{
 		return accountType;
+	}
+
+	public string GetName()
+	{
+		return name;
 	}
 
 	public String GetToken()
@@ -33,6 +39,11 @@ public abstract class User
 	public void SetAccountType(AccountTypeEnum arg_accountType)
 	{
 		accountType = arg_accountType;
+	}
+
+	public void SetName(string arg_name)
+	{
+		name = arg_name;
 	}
 
 	public void SetToken(String arg_token)
