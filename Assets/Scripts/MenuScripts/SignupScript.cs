@@ -34,7 +34,7 @@ public class SignupScript : MonoBehaviour
         }
 
         //
-        //méthode pour ajouter l'user a la bdd
+        //méthode pour ajouter le nouveau user a la bdd
         //
 
         SceneManager.LoadScene("MenuLoginScene", LoadSceneMode.Single);
