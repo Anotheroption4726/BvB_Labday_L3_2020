@@ -8,17 +8,20 @@ using UnityEngine.SceneManagement;
 
 public class AffichageMenuScript : MonoBehaviour
 {
-    public Text pseudo , attack, life, speed; //on assigne les variables aux champs texte
+    public Text pseudo , attack, life, speed, nbWins, nbGames; //on assigne les variables aux champs texte
     public Button muteBtn;
 
     void Awake()
     {
+        int games = Server_Database.GetServer_UserWinsFromUserId(Game.GetCurentUser().GetId()) + Server_Database.GetServer_UserLossesFromUserId(Game.GetCurentUser().GetId()); //nombre de wins + nombre de losses
+
         User_Player loc_player = (User_Player)Game.GetCurentUser();
         pseudo.text = (Game.GetCurentUser().GetId()).ToString();
         attack.text = (loc_player.GetUserRobot().GetStatAttack()).ToString();
         life.text = (loc_player.GetUserRobot().GetStatHp()).ToString();
         speed.text = (loc_player.GetUserRobot().GetStatSpeed()).ToString();
-
+        nbWins.text = (Server_Database.GetServer_UserWinsFromUserId(Game.GetCurentUser().GetId())).ToString();
+        nbGames.text = games.ToString();
     }
 
 }
