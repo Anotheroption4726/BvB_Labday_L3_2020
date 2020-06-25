@@ -32,9 +32,6 @@ public class InputControlScript : MonoBehaviour
             if(Server_Database.GetServer_UserAccountTypeFromUserId(id_user) == AccountTypeEnum.Player)
             {
                 Game.SetCurentUser_Player(Server_Database.CreateUser_PlayerFromServer(GetServer_UserFromId(id_user)));
-                //User_Player loc_player = (User_Player)Game.GetCurentUser();
-                //Debug.Log(loc_player.GetUserRobot().GetStatSpeed());
-                //Debug.Log(loc_player.GetEnemyRobot().GetStatSpeed());
                 NavigationMenu("MenuMainScene");       //navigation vers le menu
             }
 
