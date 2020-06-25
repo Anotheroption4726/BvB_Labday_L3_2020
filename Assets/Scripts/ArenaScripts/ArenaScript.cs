@@ -49,14 +49,20 @@ public class ArenaScript : MonoBehaviour
                 if (Game.GetCurentUser() == null)
                 {
                     SetTestGameRobot(0, playerRobotScript);
-                    SetTestGameRobot(1, enemyRobotScript);        
+                    SetTestGameRobot(1, enemyRobotScript);
+                    playerRobotNameDisplay.text = "Robot test 0";
+                    enemyRobotNameDisplay.text = "Robot test 1";
                 }
                 else
                 {
                     if (Game.GetCurentUser().GetAccountType() == AccountTypeEnum.Player)
                     {
-                        SetRegularGameRobot(0, true, playerRobotScript);
-                        SetRegularGameRobot(1, false, enemyRobotScript);
+                        User_Player loc_player = (User_Player)Game.GetCurentUser();
+
+                        SetRegularGameRobot(0, true, playerRobotScript, loc_player);
+                        SetRegularGameRobot(1, false, enemyRobotScript, loc_player);
+                        playerRobotNameDisplay.text = Game.GetCurentUser().GetName();
+                        enemyRobotNameDisplay.text = loc_player.GetEnemyRobot().GetName();
                     }
 
                     if (Game.GetCurentUser().GetAccountType() == AccountTypeEnum.Developper)
@@ -155,22 +161,22 @@ public class ArenaScript : MonoBehaviour
         arg_robotScript.GetBullet().GetComponent<BulletScript_Main>().SetRobotInGameId(arg_inGameId);
     }
 
-    private void SetRegularGameRobot(int arg_inGameId, bool arg_isPlayerRobot, RobotScript arg_robotScript)
+    private void SetRegularGameRobot(int arg_inGameId, bool arg_isPlayerRobot, RobotScript arg_robotScript, User_Player arg_userPlayer)
     {
-        User_Player loc_player = (User_Player)Game.GetCurentUser();
+        //User_Player arg_userPlayer = (User_Player)Game.GetCurentUser();
         arg_robotScript.SetInGameId(arg_inGameId);
 
         if (arg_isPlayerRobot)
         {
-            arg_robotScript.SetRobot(loc_player.GetUserRobot());
-            arg_robotScript.SetWeapon(Game.GetWeaponFromId(loc_player.GetUserRobot().GetWeaponId()));
-            arg_robotScript.SetBullet(GetBulletFromId(Game.GetWeaponFromId(loc_player.GetUserRobot().GetWeaponId()).GetBulletId()));
+            arg_robotScript.SetRobot(arg_userPlayer.GetUserRobot());
+            arg_robotScript.SetWeapon(Game.GetWeaponFromId(arg_userPlayer.GetUserRobot().GetWeaponId()));
+            arg_robotScript.SetBullet(GetBulletFromId(Game.GetWeaponFromId(arg_userPlayer.GetUserRobot().GetWeaponId()).GetBulletId()));
         }
         else
         {
-            arg_robotScript.SetRobot(loc_player.GetEnemyRobot());
-            arg_robotScript.SetWeapon(Game.GetWeaponFromId(loc_player.GetEnemyRobot().GetWeaponId()));
-            arg_robotScript.SetBullet(GetBulletFromId(Game.GetWeaponFromId(loc_player.GetEnemyRobot().GetWeaponId()).GetBulletId()));
+            arg_robotScript.SetRobot(arg_userPlayer.GetEnemyRobot());
+            arg_robotScript.SetWeapon(Game.GetWeaponFromId(arg_userPlayer.GetEnemyRobot().GetWeaponId()));
+            arg_robotScript.SetBullet(GetBulletFromId(Game.GetWeaponFromId(arg_userPlayer.GetEnemyRobot().GetWeaponId()).GetBulletId()));
         }
 
         arg_robotScript.GetBullet().GetComponent<BulletScript_Main>().SetRobotInGameId(arg_inGameId);
