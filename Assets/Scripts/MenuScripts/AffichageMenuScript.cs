@@ -24,4 +24,19 @@ public class AffichageMenuScript : MonoBehaviour
         nbGames.text = games.ToString();
     }
 
+    public void mute()
+    {
+        if(Game.GetMuteAudio() == true)
+        {
+            Game.SetMuteAudio(false);
+            Debug.Log("mute off");
+        }
+        else
+        {
+            Game.SetMuteAudio(true);
+            Debug.Log("mute on");
+
+        }
+    }
+
 }
