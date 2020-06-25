@@ -16,7 +16,7 @@ public class AffichageMenuScript : MonoBehaviour
         int games = Server_Database.GetServer_UserWinsFromUserId(Game.GetCurentUser().GetId()) + Server_Database.GetServer_UserLossesFromUserId(Game.GetCurentUser().GetId()); //nombre de wins + nombre de losses
 
         User_Player loc_player = (User_Player)Game.GetCurentUser();
-        pseudo.text = (Game.GetCurentUser().GetId()).ToString();
+        pseudo.text = Game.GetCurentUser().GetName();
         attack.text = (loc_player.GetUserRobot().GetStatAttack()).ToString();
         life.text = (loc_player.GetUserRobot().GetStatHp()).ToString();
         speed.text = (loc_player.GetUserRobot().GetStatSpeed()).ToString();
