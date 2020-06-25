@@ -13,13 +13,10 @@ public class InputControlScript : MonoBehaviour
     [SerializeField] Button btnLogin; //on assignela variable au bouton login
     string emailInput, passwordInput;
     int id_user;
-    //Server_User[] serverUserTable;
 
     void Awake()
     {
         btnLogin.onClick.AddListener(Search); //écoute d'évennement onClick sur le bouton pour appeler la fonction Search()
-
-        //serverUserTable = Server_Database.GetUsersTable();
     }
 
     public void Search()
@@ -34,14 +31,15 @@ public class InputControlScript : MonoBehaviour
         {
             if(Server_Database.GetServer_UserAccountTypeFromUserId(id_user) == AccountTypeEnum.Player)
             {
-                Debug.LogWarning("utilisateur player authentifié");
                 Game.SetCurentUser_Player(Server_Database.CreateUser_PlayerFromServer(GetServer_UserFromId(id_user)));
-                NavigationMenu();       //navigation vers le menu
+                //User_Player loc_player = (User_Player)Game.GetCurentUser();
+                //Debug.Log(loc_player.GetUserRobot().GetStatSpeed());
+                //Debug.Log(loc_player.GetEnemyRobot().GetStatSpeed());
+                NavigationMenu("MenuMainScene");       //navigation vers le menu
             }
 
             if (Server_Database.GetServer_UserAccountTypeFromUserId(id_user) == AccountTypeEnum.Developper)
             {
-                Debug.LogWarning("utilisateur developper authentifié");
                 Game.SetCurentUser_Developper(Server_Database.CreateUser_DevelopperFromServer(GetServer_UserFromId(id_user)));
                 //NavigationMenu();       //navigation vers le menu developpeur
             }
@@ -54,8 +52,8 @@ public class InputControlScript : MonoBehaviour
 
     }
 
-    public void NavigationMenu()
+    public void NavigationMenu(string arg_sceneName)
     {
-        SceneManager.LoadScene("MenuMainScene", LoadSceneMode.Single); //navigation vers l'écran menu
+        SceneManager.LoadScene(arg_sceneName, LoadSceneMode.Single); //navigation vers l'écran menu
     }
 }

@@ -48,14 +48,26 @@ public class ArenaScript : MonoBehaviour
             {
                 if (Game.GetCurentUser() == null)
                 {
-                    SetTestRobot(0, playerRobotScript);
-                    SetTestRobot(1, enemyRobotScript);        
+                    SetTestGameRobot(0, playerRobotScript);
+                    SetTestGameRobot(1, enemyRobotScript);        
                 }
                 else
                 {
                     if (Game.GetCurentUser().GetAccountType() == AccountTypeEnum.Player)
                     {
+                        User_Player loc_player = (User_Player)Game.GetCurentUser();
 
+                        playerRobotScript.SetInGameId(0);
+                        playerRobotScript.SetRobot(loc_player.GetUserRobot());
+                        playerRobotScript.SetWeapon(Game.GetWeaponFromId(loc_player.GetUserRobot().GetWeaponId()));
+                        playerRobotScript.SetBullet(GetBulletFromId(Game.GetWeaponFromId(loc_player.GetUserRobot().GetWeaponId()).GetBulletId()));
+                        playerRobotScript.GetBullet().GetComponent<BulletScript_Main>().SetRobotInGameId(0);
+
+                        playerRobotScript.SetInGameId(1);
+                        enemyRobotScript.SetRobot(loc_player.GetEnemyRobot());       
+                        enemyRobotScript.SetWeapon(Game.GetWeaponFromId(loc_player.GetEnemyRobot().GetWeaponId()));
+                        enemyRobotScript.SetBullet(GetBulletFromId(Game.GetWeaponFromId(loc_player.GetEnemyRobot().GetWeaponId()).GetBulletId()));
+                        playerRobotScript.GetBullet().GetComponent<BulletScript_Main>().SetRobotInGameId(1);
                     }
 
                     if (Game.GetCurentUser().GetAccountType() == AccountTypeEnum.Developper)
@@ -121,7 +133,7 @@ public class ArenaScript : MonoBehaviour
 
 
     //  Methode d'assignement de robot test
-    private void SetTestRobot(int arg_inGameId, RobotScript arg_robotScript)
+    private void SetTestGameRobot(int arg_inGameId, RobotScript arg_robotScript)
     {
         arg_robotScript.SetInGameId(arg_inGameId);
 
