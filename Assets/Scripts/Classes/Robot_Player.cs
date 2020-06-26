@@ -12,6 +12,6 @@ public class Robot_Player : Robot
 		SetBehaviorProximity(arg_behaviorProximity);
 		SetBehaviorAgility(arg_behaviorAgility);
 		SetBehaviorAggressivity(arg_behaviorAggressivity);
-		SetCurentStatHp(GetStatHp());
+		SetCurentStatHp(GetStatHp() + 20);
 	}
 }

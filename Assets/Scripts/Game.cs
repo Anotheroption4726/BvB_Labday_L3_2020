@@ -7,6 +7,7 @@ public static class Game
 	private static bool muteAudio = false;
 	private static float timeScale = 1f;
 	private static Weapon[] weaponTable = { new Weapon(1, "Weapon 1", 1, 4, 8, 4, 4, 2), new Weapon(2, "Weapon 2", 1, 2, 14, 8, 1, 4) };
+	public static int minimumRobotHp = 2;
 
 
 	// Getters
@@ -69,5 +70,14 @@ public static class Game
 			}
 		}
 		return null;
+	}
+
+
+	//	Méthode de déconnexion
+	static public void ClearCurentSession()
+	{
+		curentUser = null;
+		muteAudio = false;
+		timeScale = 1f;
 	}
 }

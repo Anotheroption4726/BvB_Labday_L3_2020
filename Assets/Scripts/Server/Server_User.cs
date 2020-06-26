@@ -73,4 +73,9 @@ public class Server_User
 	{
 		losses = arg_losses;
 	}
+
+    internal void SetToken()
+    {
+        throw new NotImplementedException();
+    }
 }

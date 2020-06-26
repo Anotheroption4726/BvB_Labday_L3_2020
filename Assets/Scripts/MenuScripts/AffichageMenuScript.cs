@@ -13,17 +13,18 @@ public class AffichageMenuScript : MonoBehaviour
 
     void Awake()
     {
+        int wins = Server_Database.GetServer_UserWinsFromUserId(Game.GetCurentUser().GetId());
         int games = Server_Database.GetServer_UserWinsFromUserId(Game.GetCurentUser().GetId()) + Server_Database.GetServer_UserLossesFromUserId(Game.GetCurentUser().GetId()); //nombre de wins + nombre de losses
 
         User_Player loc_player = (User_Player)Game.GetCurentUser();
-        pseudo.text = (Game.GetCurentUser().GetId()).ToString();
+        pseudo.text = Game.GetCurentUser().GetName();
         attack.text = (loc_player.GetUserRobot().GetStatAttack()).ToString();
         life.text = (loc_player.GetUserRobot().GetStatHp()).ToString();
         speed.text = (loc_player.GetUserRobot().GetStatSpeed()).ToString();
         agility.text = (loc_player.GetUserRobot().GetBehaviorAgility()).ToString();
         aggressivity.text = (loc_player.GetUserRobot().GetBehaviorAggressivity()).ToString();
 
-        nbWins.text = (Server_Database.GetServer_UserWinsFromUserId(Game.GetCurentUser().GetId())).ToString();
+        nbWins.text = wins.ToString();
         nbGames.text = games.ToString();
     }
 
@@ -42,9 +43,9 @@ public class AffichageMenuScript : MonoBehaviour
         }
     }
 
-    public void deconnexion()
+    public void Deconnexion()
     {
-        //Game.SetCurentUser_Player = null
+        Game.ClearCurentSession();
         SceneManager.LoadScene("MenuLoginScene", LoadSceneMode.Single);
     }
 

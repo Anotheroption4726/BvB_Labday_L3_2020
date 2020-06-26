@@ -17,7 +17,7 @@ public class ModifRobotStatScript : MonoBehaviour
 
     void Awake()
     {
-        pseudo.text = (Game.GetCurentUser().GetId()).ToString();
+        pseudo.text = Game.GetCurentUser().GetName();
         attack.text = (loc_player.GetUserRobot().GetStatAttack()).ToString();
         life.text = (loc_player.GetUserRobot().GetStatHp()).ToString();
         speed.text = (loc_player.GetUserRobot().GetStatSpeed()).ToString();

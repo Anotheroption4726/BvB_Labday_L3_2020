@@ -17,28 +17,29 @@ public class SignupScript : MonoBehaviour
 
     }
 
-    public void addUser()//lui donner le meme id que le user_player 1 pour lui associer un robot directement ni vu ni connu
+    public void addUser()
     {
         string login = loginText.text;
         string password = paswwordText.text;
         string verifPassword = verifPasswordText.text;
 
-        if(GetServer_UserIdFromEmail(login) != 0)
+        if (login == "" || login == null || password == "" || password == null)
         {
-            Debug.LogWarning("user déja existant");
+            Debug.LogWarning("Aucun nom d'utilisateur ou de mot de passe");
         }
-
-        if(password != verifPassword)
+        else if(GetServer_UserIdFromEmail(login) != 0)
+        {
+            Debug.LogWarning("Utilisateur déja existant");
+        }
+        else if(password != verifPassword)
         {
             Debug.LogWarning("Les mots de passes sont différents");
         }
-
-        //
-        //méthode pour ajouter le nouveau user a la bdd
-        //
-
-        SceneManager.LoadScene("MenuLoginScene", LoadSceneMode.Single);
-
+        else
+        {
+            Server_Database.AddNewServer_User(login, password);
+            SceneManager.LoadScene("MenuLoginScene", LoadSceneMode.Single);
+        }
     }
 
 }
