@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public static class Server_Database
 {
@@ -6,7 +8,12 @@ public static class Server_Database
 	//	email
 	//	password
 	//	accountType
-	private static Server_User[] usersTable = { new Server_User(1, "Player 1", "testpassword", AccountTypeEnum.Player), new Server_User(2, "Developper 1", "dev", AccountTypeEnum.Developper), new Server_User(3, "bvb", "bvb", AccountTypeEnum.Player) };
+	private static List<Server_User> usersTable = new List<Server_User>()
+	{
+		new Server_User(1, "Player 1", "testpassword", AccountTypeEnum.Player),
+		new Server_User(2, "Developper 1", "dev", AccountTypeEnum.Developper), 
+		new Server_User(3, "bvb", "bvb", AccountTypeEnum.Player)
+	};
 
 	//	userId
 	//	weaponId
@@ -16,9 +23,14 @@ public static class Server_Database
 	//	behaviorProximity
 	//	behaviorAgility
 	//	behaviorAggressivity
-	private static Server_Robot_Player[] playerRobotsTable = { new Server_Robot_Player(1, 1, 30, 50, 40, 0, 40, 50), new Server_Robot_Player(3, 1, 30, 50, 40, 0, 40, 50) };
+	private static List<Server_Robot_Player> playerRobotsTable = new List<Server_Robot_Player>()
+	{
+		new Server_Robot_Player(1, 1, 30, 50, 40, 0, 40, 50),
+		new Server_Robot_Player(3, 1, 30, 50, 40, 0, 40, 50)
+	};
 
 	//	algoGenId
+	//	name
 	//	weaponId
 	//	statAttack
 	//	statHp
@@ -26,7 +38,10 @@ public static class Server_Database
 	//	behaviorProximity
 	//	behaviorAgility
 	//	behaviorAggressivity
-	private static Server_Robot_AlgoGen[] algoGenRobotsTable = { new Server_Robot_AlgoGen(1, "HAL 9000", 2, 10, 70, 20, 0, 20, 10) };
+	private static List<Server_Robot_AlgoGen> algoGenRobotsTable = new List<Server_Robot_AlgoGen>()
+	{
+		new Server_Robot_AlgoGen(1, "HAL 9000", 2, 10, 70, 20, 0, 20, 10)
+	};
 
 
 	//	Methodes table User
@@ -169,7 +184,7 @@ public static class Server_Database
 
 	public static void SetServer_Robot_PlayerFromUserId(int arg_userId, Server_Robot_Player arg_serverRobot, string arg_userToken)
 	{
-		for (int i = 0; i < playerRobotsTable.Length; i++)
+		for (int i = 0; i < playerRobotsTable.Count; i++)
 		{
 			if (playerRobotsTable[i].GetUserId() == arg_userId)
 			{
@@ -225,5 +240,21 @@ public static class Server_Database
 		Robot_AlgoGen[] loc_algoGenSessionTable = { };
 		return new User_Developper(arg_serverUser.GetId(), arg_serverUser.GetAccountType(), arg_serverUser.GetEmail(), arg_serverUser.GetToken(), loc_algoGenSessionTable);
 		//	ATTENTION, POUR CETTE VERSION L'EMAIL EST UTILISE POUR LE CHAMP NAME
+	}
+
+
+	//	Méthodes d'ajout de nouvel utilisateur joueur
+	public static void AddNewServer_Robot_Player(int arg_userId)
+	{
+		playerRobotsTable.Add(new Server_Robot_Player(arg_userId, 1 , 50, 50, 50, 50, 50, 50));
+	}
+
+	public static void AddNewServer_User(string arg_email, string arg_password)
+	{
+		int loc_userId = usersTable.Count + 1;
+		Server_User loc_serverUser = new Server_User(loc_userId, arg_email, arg_password, AccountTypeEnum.Player);
+		loc_serverUser.SetToken("RandomToken");
+		usersTable.Add(loc_serverUser);
+		AddNewServer_Robot_Player(loc_userId);
 	}
 }
