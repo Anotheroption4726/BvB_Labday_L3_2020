@@ -22,7 +22,7 @@ public class Robot_AlgoGen : Robot
 		SetBehaviorProximity(arg_behaviorProximity);
 		SetBehaviorAgility(arg_behaviorAgility);
 		SetBehaviorAggressivity(arg_behaviorAggressivity);
-		SetCurentStatHp(GetStatHp());
+		SetCurentStatHp(GetStatHp() + Game.minimumRobotHp);
 	}
 
 

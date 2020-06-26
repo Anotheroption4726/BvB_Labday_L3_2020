@@ -144,8 +144,8 @@ public static class Server_Database
             {
 				if (lp_user.GetToken() == arg_userToken)
 				{
-					int loc_losses = lp_user.GetLosses();
-					lp_user.SetLosses(loc_losses + 1);
+					int loc_wins = lp_user.GetWins();
+					lp_user.SetWins(loc_wins + 1);
 					break;
 				}   
             }
@@ -160,8 +160,8 @@ public static class Server_Database
             {
 				if (lp_user.GetToken() == arg_userToken)
 				{
-					int loc_wins = lp_user.GetWins();
-					lp_user.SetWins(loc_wins + 1);
+					int loc_losses = lp_user.GetLosses();
+					lp_user.SetLosses(loc_losses + 1);
 					break;
 				}	
             }

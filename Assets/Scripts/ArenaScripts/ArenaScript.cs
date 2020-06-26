@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ArenaScript : MonoBehaviour
@@ -12,6 +14,7 @@ public class ArenaScript : MonoBehaviour
     [SerializeField] private GameObject enemyRobotGameObject;
     private RobotScript playerRobotScript;
     private RobotScript enemyRobotScript;
+    private bool deadAnimationCoroutineReturn = false;
 
     //  HUD
     [SerializeField] private Image playerRobotHealthDisplay;
@@ -106,8 +109,29 @@ public class ArenaScript : MonoBehaviour
                     Destroy(bullet);
                 }
 
+                StartCoroutine(FinishedGameCoroutine(4));
+
+                if (enemyRobotScript.GetRobotState() == RobotStateEnum.Dead)
+                {
+                    Server_Database.IncrementServer_UserWinsFromUserId(Game.GetCurentUser().GetId(), Game.GetCurentUser().GetToken());
+                }
+
+                if (playerRobotScript.GetRobotState() == RobotStateEnum.Dead)
+                {
+                    Server_Database.IncrementServer_UserLossesFromUserId(Game.GetCurentUser().GetId(), Game.GetCurentUser().GetToken());
+                }
+
                 Game.SetGameState(GameStateEnum.GameFinished);
             }
+        }
+
+        if (Game.GetCurentUser().GetAccountType() == AccountTypeEnum.Player && Game.GetGameState().Equals(GameStateEnum.GameFinished) && deadAnimationCoroutineReturn)
+        {
+            User_Player loc_player = (User_Player)Game.GetCurentUser();
+            loc_player.GetUserRobot().SetCurentStatHp(loc_player.GetUserRobot().GetStatHp() + Game.minimumRobotHp);
+            loc_player.GetEnemyRobot().SetCurentStatHp(loc_player.GetEnemyRobot().GetStatHp() + Game.minimumRobotHp);
+            Game.SetGameState(GameStateEnum.GamePending);
+            SceneManager.LoadScene("MenuMainScene", LoadSceneMode.Single);
         }
     }
 
@@ -179,5 +203,13 @@ public class ArenaScript : MonoBehaviour
         }
 
         arg_robotScript.GetBullet().GetComponent<BulletScript_Main>().SetRobotInGameId(arg_inGameId);
+    }
+
+
+    // Méthode Coroutine d'attente
+    IEnumerator FinishedGameCoroutine(int arg_waitingTime)
+    {
+        yield return new WaitForSeconds(arg_waitingTime);
+        deadAnimationCoroutineReturn = true;
     }
 }

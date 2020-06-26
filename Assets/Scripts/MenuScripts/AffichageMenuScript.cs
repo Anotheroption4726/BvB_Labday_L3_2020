@@ -13,6 +13,7 @@ public class AffichageMenuScript : MonoBehaviour
 
     void Awake()
     {
+        int wins = Server_Database.GetServer_UserWinsFromUserId(Game.GetCurentUser().GetId());
         int games = Server_Database.GetServer_UserWinsFromUserId(Game.GetCurentUser().GetId()) + Server_Database.GetServer_UserLossesFromUserId(Game.GetCurentUser().GetId()); //nombre de wins + nombre de losses
 
         User_Player loc_player = (User_Player)Game.GetCurentUser();
@@ -23,7 +24,7 @@ public class AffichageMenuScript : MonoBehaviour
         agility.text = (loc_player.GetUserRobot().GetBehaviorAgility()).ToString();
         aggressivity.text = (loc_player.GetUserRobot().GetBehaviorAggressivity()).ToString();
 
-        nbWins.text = (Server_Database.GetServer_UserWinsFromUserId(Game.GetCurentUser().GetId())).ToString();
+        nbWins.text = wins.ToString();
         nbGames.text = games.ToString();
     }
 
