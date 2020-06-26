@@ -862,7 +862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioManager: {fileID: 114969790}
-  muteAudio: 1
+  muteAudio: 0
   playerRobotGameObject: {fileID: 1285268957}
   enemyRobotGameObject: {fileID: 1293411242}
   playerRobotHealthDisplay: {fileID: 1565625048}

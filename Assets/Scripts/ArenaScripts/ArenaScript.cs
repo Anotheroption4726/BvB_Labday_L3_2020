@@ -111,27 +111,33 @@ public class ArenaScript : MonoBehaviour
 
                 StartCoroutine(FinishedGameCoroutine(4));
 
-                if (enemyRobotScript.GetRobotState() == RobotStateEnum.Dead)
+                if (Game.GetCurentUser() != null)
                 {
-                    Server_Database.IncrementServer_UserWinsFromUserId(Game.GetCurentUser().GetId(), Game.GetCurentUser().GetToken());
-                }
+                    if (enemyRobotScript.GetRobotState() == RobotStateEnum.Dead)
+                    {
+                        Server_Database.IncrementServer_UserWinsFromUserId(Game.GetCurentUser().GetId(), Game.GetCurentUser().GetToken());
+                    }
 
-                if (playerRobotScript.GetRobotState() == RobotStateEnum.Dead)
-                {
-                    Server_Database.IncrementServer_UserLossesFromUserId(Game.GetCurentUser().GetId(), Game.GetCurentUser().GetToken());
+                    if (playerRobotScript.GetRobotState() == RobotStateEnum.Dead)
+                    {
+                        Server_Database.IncrementServer_UserLossesFromUserId(Game.GetCurentUser().GetId(), Game.GetCurentUser().GetToken());
+                    }
                 }
 
                 Game.SetGameState(GameStateEnum.GameFinished);
             }
         }
 
-        if (Game.GetCurentUser().GetAccountType() == AccountTypeEnum.Player && Game.GetGameState().Equals(GameStateEnum.GameFinished) && deadAnimationCoroutineReturn)
+        if (Game.GetCurentUser() != null)
         {
-            User_Player loc_player = (User_Player)Game.GetCurentUser();
-            loc_player.GetUserRobot().SetCurentStatHp(loc_player.GetUserRobot().GetStatHp() + Game.minimumRobotHp);
-            loc_player.GetEnemyRobot().SetCurentStatHp(loc_player.GetEnemyRobot().GetStatHp() + Game.minimumRobotHp);
-            Game.SetGameState(GameStateEnum.GamePending);
-            SceneManager.LoadScene("MenuMainScene", LoadSceneMode.Single);
+            if (Game.GetCurentUser().GetAccountType() == AccountTypeEnum.Player && Game.GetGameState().Equals(GameStateEnum.GameFinished) && deadAnimationCoroutineReturn)
+            {
+                User_Player loc_player = (User_Player)Game.GetCurentUser();
+                loc_player.GetUserRobot().SetCurentStatHp(loc_player.GetUserRobot().GetStatHp() + Game.minimumRobotHp);
+                loc_player.GetEnemyRobot().SetCurentStatHp(loc_player.GetEnemyRobot().GetStatHp() + Game.minimumRobotHp);
+                Game.SetGameState(GameStateEnum.GamePending);
+                SceneManager.LoadScene("MenuMainScene", LoadSceneMode.Single);
+            }
         }
     }
 
